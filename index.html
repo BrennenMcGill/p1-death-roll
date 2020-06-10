@@ -27,6 +27,7 @@
                 <h1 class="text-center">Death Roll</h1>
             </div>
         </a>
+        <button type = "button" id = "modal-btn" class="button" data-open="user-modal">Start Playing!</button>
     </header><!-- #main-header -->
 
     <!-- Main Section Start -->
@@ -76,6 +77,40 @@
 
     </footer><!-- #main-footer -->
 
+    <!-- User Input Modal -->
+    <div class="reveal" id="user-modal" data-reveal>
+        <form>
+            <div>
+                <label for="modalSlackName">
+                    <h1 class = "font-bold text-center">
+                        <img src="https://img.icons8.com/color/48/000000/slack.png" alt="slack logo"/>
+                        Slack Username
+                    </h1>
+                </label>
+                <input type="text" id="modalSlackName" placeholder="Enter Username">
+            </div>
+        </form>
+        <div class="modal-footer">
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <button class="button" data-open="instruct-modal">Instructions</button>
+            <button class="button success" id = "start-btn">Begin Game</button>
+      </div>
+    </div>
+
+    <!-- Nested Modal for Instructions -->
+    <div class="reveal" id="instruct-modal" data-reveal>
+        <h2 class = "font-bold">HOW TO PLAY</h2>
+        <ol>
+            <li>instructions 1</li>
+            <li>instructions 2</li>
+        </ol>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <button class="button" data-open="user-modal">Back</button>
+        </div>
 
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -84,6 +119,8 @@
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script src="./assets/js/script.js"></script>
+    <!-- Initialize Foundation -->    
+    <script>$(document).foundation();</script>
 </body>
 
 </html>

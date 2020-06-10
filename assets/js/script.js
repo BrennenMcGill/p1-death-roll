@@ -20,14 +20,15 @@
  *********************************************************/
 
 /* ===============[ 0. GLOBALS ]=========================*/
+var slackNameEl = document.querySelector("#modalSlackName");
 var playerPoints = 100;
 var botPoints = 100;
-var slackname = "";
 var rollDiceBtnEl = document.querySelector("#roll-dice");
 var playerResultEl = document.querySelector("#player-roll");
 var npcResultEl = document.querySelector("#npc-roll");
 var winLoseEl = document.querySelector("#win-or-lose");
 var messageEL = document.getElementById("message");
+const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
 /* ===============[ 1. Functions ]=========================*/
 
 /**
@@ -103,6 +104,14 @@ var slackMessenger = function (cb, cbError) {
 };
 
 /**
+ /**
+ * 1.2 srtGame()
+ */
+var srtGame = function(slack){
+    //Temporarily log slack name until start game function is done.
+    console.log(slack);
+}
+ /**
  * 1.3 function()
  */
 
@@ -119,3 +128,31 @@ var slackMessenger = function (cb, cbError) {
  */
 rollDiceBtnEl.addEventListener("click", rollDice);
 $("#submit-message").on("click", slackMessenger)
+
+// Button to Save Slack Username to Local Storage & Start Game
+$('#start-btn').on('click', function(){  
+    // Get User Input for Slack Username
+    slackName = document.querySelector("#modalSlackName").value.trim();
+    // Push Username to Array (Array gives option of pushing other things)
+    const userArray = {
+       username: slackName
+    };
+    slackInput.push(userArray);
+    // Save User Input to Local Storage
+    localStorage.setItem("slackName", JSON.stringify(slackInput));
+    // Pass Slack Username to Start Game Function, or return error.
+    var slack = slackNameEl.value.trim();
+    if (slack) {
+        $('#user-modal').foundation('close');
+        srtGame(slack);
+        slackNameEl.value = "";
+    } else {
+    alert("Please enter a valid username.");
+    }
+});
+
+
+// Button to Roll Dice
+rollDiceBtnEl.addEventListener("click", rollDice);
+
+
