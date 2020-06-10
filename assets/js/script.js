@@ -32,11 +32,6 @@ const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
 /**
  * 1.1 rollDice()
  */
-var srtGame = function(slack){
-    //Temporarily log slack name until start game function is done.
-    console.log(slack);
-}
-
 var rollDice = function () {
     // generate random number between 1 and 100 for both player and npc
     var playerValue = Math.floor(Math.random() * 100) + 1;
@@ -68,9 +63,12 @@ var rollDice = function () {
     }
 };
  /**
- * 1.2 function()
+ * 1.2 srtGame()
  */
-
+var srtGame = function(slack){
+    //Temporarily log slack name until start game function is done.
+    console.log(slack);
+}
  /**
  * 1.3 function()
  */
