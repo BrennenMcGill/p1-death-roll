@@ -88,8 +88,7 @@ var rollDice = function () {
  */
 
 // Button to Save Slack Username to Local Storage & Start Game
-$('#start-btn').on('click', function(event){  
-    event.preventDefault();
+$('#start-btn').on('click', function(){  
     // Get User Input for Slack Username
     slackName = document.querySelector("#modalSlackName").value.trim();
     // Push Username to Array (Array gives option of pushing other things)
@@ -109,6 +108,7 @@ $('#start-btn').on('click', function(event){
     alert("Please enter a valid username.");
     }
 });
+
 
 // Button to Roll Dice
 rollDiceBtnEl.addEventListener("click", rollDice);
