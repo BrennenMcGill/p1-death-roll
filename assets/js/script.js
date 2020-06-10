@@ -29,7 +29,7 @@ var winLoseEl = document.querySelector("#win-or-lose");
 /* ===============[ 1. Functions ]=========================*/
 
 /**
- * 1.1 function()
+ * 1.1 rollDice()
  */
 var rollDice = function () {
     // generate random number between 1 and 100 for both player and npc
