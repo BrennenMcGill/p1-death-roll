@@ -9,7 +9,7 @@
  * ===============[ TABLE OF CONTENTS ]===================
  * 0. Globals
  * 1. Functions
- *   1.1 function()
+ *   1.1 rollDice()
  *   1.2 function()
  *    
  * 
@@ -27,7 +27,19 @@ var slackname = "";
 /**
  * 1.1 function()
  */
-
+var rollDice = function () {
+    var playerValue = Math.floor(Math.random() * 100) + 1;
+    var npcValue = Math.floor(Math.random() * 100) + 1;
+    console.log("Player rolled: " + playerValue);
+    console.log("NPC rolled: " + npcValue);
+    if(playerValue === npcValue) {
+        rollDice();
+    } else if (playerValue > npcValue) {
+        console.log("You win!");
+    } else {
+        console.log("You lose!")
+    }
+};
  /**
  * 1.2 function()
  */
@@ -47,3 +59,4 @@ var slackname = "";
   /**
  * 2.1 Add click listeners (add, edit, delete, reset)
  */
+ rollDice();
