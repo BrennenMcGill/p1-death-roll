@@ -39,7 +39,40 @@
     <footer id="main-footer">
         
     </footer><!-- #main-footer -->
-    
+
+    <!-- Modal -->
+    <button type = "button" id = "modal-btn" class="button" data-open="user-modal">Start Playing!</button>
+
+    <!-- User Input Modal -->
+    <div class="reveal" id="user-modal" data-reveal>
+        <form>
+            <div>
+                <label for="modalSlackName">Slack User Name:</label>
+                <textarea id="modalSlackName"></textarea>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <button class="close-button" data-close aria-label="Close reveal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <button class="button" data-open="instruct-modal">Instructions</button>
+      </div>
+    </div>
+
+    <!-- Nested Modal for Instructions -->
+    <div class="reveal" id="instruct-modal" data-reveal>
+        <h2>HOW TO PLAY</h2>
+        <ol>
+            <li>instructions 1</li>
+            <li>instructions 2</li>
+        </ol>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <button class="button" data-open="user-modal">Back</button>
+        </div>
+
+        
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed JavaScript -->
