@@ -30,7 +30,7 @@ const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
 /* ===============[ 1. Functions ]=========================*/
 
 /**
- * 1.1 function()
+ * 1.1 rollDice()
  */
 var srtGame = function(slack){
     //Temporarily log slack name until start game function is done.
