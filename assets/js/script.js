@@ -10,9 +10,9 @@
  * 1. Functions
  *   1.1 rollDice()
  *   1.2 slackMessenger()
- *   1.3 function()
- *   1.4 function()
- *   1.5 function()  
+ *   1.3 srtGame()
+ *   1.4 pointSystem()
+ *   1.5 giphyAPI()  
  * 
  * 2. Document Ready
  *   2.1 Add click listeners (add, edit, delete, reset)
@@ -41,21 +41,26 @@ const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
  * 1.1 rollDice()
  */
 var rollDice = function (bet) {
+
     // generate random number between 1 and 100 for both player and npc
     var playerValue = Math.floor(Math.random() * 100) + 1;
     var npcValue = Math.floor(Math.random() * 100) + 1;
+
     //create p tag to display player's result
     var displayPlayerValue = document.createElement("p");
     displayPlayerValue.innerHTML = "You rolled " + playerValue;
+
     //create p tag to display npc's result
     var displayNpcValue = document.createElement("p");
     displayNpcValue.innerHTML = "NPC rolled " + npcValue;
+
     // append player's and npc's results
     playerResultEl.innerHTML = "";
     playerResultEl.appendChild(displayPlayerValue);
     npcResultEl.innerHTML = "";
     npcResultEl.appendChild(displayNpcValue);
-    // determine winner
+
+    // DETERMINE ROUND WINNER
     if (playerValue === npcValue) {
         playerValue = "";
         npcValue = "";
@@ -83,13 +88,14 @@ var rollDice = function (bet) {
         playerStatus.totalWins = playerStatus.totalWins;
         pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     }
-    console.log(bet);
+
+    // DETERMINE GAME WINNER
+    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true) : endGame(false)) : () => {return}; 
 };
 /**
  * 1.2 slackMessenger()
  */
-var slackMessenger = function (cb, cbError) {
-    // curl - X POST - H 'Content-type: application/json'--data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
+var slackMessenger = function (message, cb, cbError) {
      if (!cbError) {
          cbError = function () {};
      }
@@ -100,11 +106,11 @@ var slackMessenger = function (cb, cbError) {
     }
         var settings = {
 
-            url: "https://hooks.slack.com/services/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",
+            url: "https://hooks.slack.com/services/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",
             type: "POST",
-            dataType: "json",
+            dataType: "application/json",
             data: {
-                "payload":JSON.stringify({"text":$("#message").val()})
+                "payload":JSON.stringify({"text": message})
             },
             success: function (data) {
                 cb(data);
@@ -124,16 +130,16 @@ var slackMessenger = function (cb, cbError) {
 
 };
 
-/**
+
  /**
- * 1.2 srtGame()
+ * 1.3 srtGame()
  */
 var srtGame = function(slack){
     //Temporarily log slack name until start game function is done.
     console.log(slack);
 }
  /**
- * 1.3 pointSystem()
+ * 1.4 pointSystem()
  */
 var pointSystem = function(points, streak, wins) {
     playerPointsEl.textContent = points;
@@ -143,8 +149,59 @@ var pointSystem = function(points, streak, wins) {
 }
 
 /**
- * 1.4 function()
+ * 1.5 giphyAPI()
  */
+var giphyAPI = function (result, cb, cbError) {
+    if (!cbError) {
+        cbError = function () {};
+    }
+    if (!cb) {
+       cb = function (data) {
+           console.log("SUCCESS ===", data);
+       };
+   }
+    var api_key = "sFsVukTCR6VSVrbN8OzUnJuANd3yiBET";
+    var apiURL = `https://api.giphy.com/v1/gifs/search?q=${result}&api_key=${api_key}`;
+    var randomIndex = Math.floor(Math.random() * Math.floor(24));
+    console.log("APIURL========", apiURL);
+
+    fetch(apiURL)
+    .then(function(response){
+        if (response.ok) {
+            response.json()
+                .then(function (gifResponse){   
+                    console.log("giphy===", gifResponse)                
+                    return cb(gifResponse.data[randomIndex].images.fixed_height_downsampled.url); 
+                })
+        } else {
+            cbError();
+        }
+    })
+};
+
+/**
+ * 1.6 endGame()
+ */
+var endGame = function (win_lose) {
+    if (win_lose) {
+        result = "winner";
+    } else {
+        result = "loser";
+    }
+
+    let message = `You're a ${result}!!!`;
+
+    slackMessenger(message);
+    giphyAPI(result, slackMessenger, function(){
+        console.log("Error!");
+    });
+    
+    // SAVE DATA TO LOCAL STORAGE
+
+    // CALL RESET FUNCTION 
+
+   
+};
 
 /* ===============[ 2. Document Ready ]=========================*/
 
@@ -152,7 +209,9 @@ var pointSystem = function(points, streak, wins) {
  * 2.1 Add click listeners (add, edit, delete, reset)
  */
 //rollDiceBtnEl.addEventListener("click", rollDice);
-$("#submit-message").on("click", slackMessenger)
+$("#submit-message").on("click", function(){
+    endGame(false);
+})
 
 // Button to Save Slack Username to Local Storage & Start Game
 $('#start-btn').on('click', function(){  
