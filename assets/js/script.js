@@ -109,8 +109,18 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
 
     if (!WebHook) {
         $.getJSON("../../keys.json", function (responseData) {
-            return slackMessenger(message, responseData.SLACK_WEB_HOOK);
-        })
+                return slackMessenger(message, responseData.SLACK_WEB_HOOK);
+            })
+            .done(function () {
+                console.log("WEB HOOK FOUND!");
+                return;
+            })
+            .fail(function () {
+                var GIF = $("<img>").addClass("").attr("src", message);
+                $("#win-or-lose").append(GIF);
+                console.log("WEB HOOK NOT FOUND!");
+                return;
+            })
     }
     var settings = {
 
@@ -161,7 +171,7 @@ var pointSystem = function (points, streak, wins) {
 /**
  * 1.5 giphyAPI()
  */
-var giphyAPI = function (result, cb, cbError, api_key) {
+var giphyAPI = function (result, cb, cbError) {
     if (!cbError) {
         cbError = function () {};
     }
@@ -170,14 +180,7 @@ var giphyAPI = function (result, cb, cbError, api_key) {
             console.log("SUCCESS ===", data);
         };
     }
-    if (!api_key) {
-        $.getJSON("../../keys.json", function (responseData) {
-            return giphyAPI(result,  slackMessenger, function () {
-                console.log("Error!");
-            },
-             responseData.GIPHY_API_KEY);
-        })
-    }
+    var api_key = "sFsVukTCR6VSVrbN8OzUnJuANd3yiBET";
 
     var apiURL = `https://api.giphy.com/v1/gifs/search?q=${result}&api_key=${api_key}`;
     var randomIndex = Math.floor(Math.random() * Math.floor(24));
@@ -189,7 +192,7 @@ var giphyAPI = function (result, cb, cbError, api_key) {
                 response.json()
                     .then(function (gifResponse) {
                         console.log("giphy===", gifResponse)
-                        return cb(gifResponse.data[randomIndex].images.fixed_height_downsampled.url);
+                        return cb(gifResponse.data[randomIndex].images.original.url);
                     })
             } else {
                 cbError();
