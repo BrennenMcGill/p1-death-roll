@@ -90,58 +90,68 @@ var rollDice = function (bet) {
     }
 
     // DETERMINE GAME WINNER
-    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true) : endGame(false)) : () => {return}; 
+    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true) : endGame(false)) : () => {
+        return
+    };
 };
 /**
  * 1.2 slackMessenger()
  */
-var slackMessenger = function (message, cb, cbError) {
-     if (!cbError) {
-         cbError = function () {};
-     }
-     if (!cb) {
+var slackMessenger = function (message, WebHook, cb, cbError) {
+    if (!cbError) {
+        cbError = function () {};
+    }
+    if (!cb) {
         cb = function (data) {
             console.log("SUCCESS ===", data);
         };
     }
-        var settings = {
 
-            url: "https://hooks.slack.com/services/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",
-            type: "POST",
-            dataType: "application/json",
-            data: {
-                "payload":JSON.stringify({"text": message})
-            },
-            success: function (data) {
-                cb(data);
-            },
-            error: function (xhr, status, error) {
-                console.log("Response ======", xhr)
-                console.log("TextStatus ======", status)
-                console.log("ErrorThough ======", error)
-                cbError();
-            }      
+    if (!WebHook) {
+        $.getJSON("../../keys.json", function (responseData) {
+            return slackMessenger(message, responseData.SLACK_WEB_HOOK);
+        })
+    }
+    var settings = {
+
+        url: WebHook,
+        type: "POST",
+        dataType: "application/json",
+        data: {
+            "payload": JSON.stringify({
+                "text": message
+            })
+        },
+        success: function (data) {
+            cb(data);
+        },
+        error: function (xhr, status, error) {
+            console.log("Response ======", xhr)
+            console.log("TextStatus ======", status)
+            console.log("ErrorThough ======", error)
+            cbError();
         }
-        console.log("settings ======", settings);
+    }
+    console.log("settings ======", settings);
 
-        $.ajax(settings).done(function(response){
-            console.log("response ============", response);
-        });
+    $.ajax(settings).done(function (response) {
+        console.log("response ============", response);
+    });
 
 };
 
 
- /**
+/**
  * 1.3 srtGame()
  */
-var srtGame = function(slack){
+var srtGame = function (slack) {
     //Temporarily log slack name until start game function is done.
     console.log(slack);
 }
- /**
+/**
  * 1.4 pointSystem()
  */
-var pointSystem = function(points, streak, wins) {
+var pointSystem = function (points, streak, wins) {
     playerPointsEl.textContent = points;
     npcPointsEl.textContent = npcPoints;
     console.log(streak);
@@ -151,32 +161,40 @@ var pointSystem = function(points, streak, wins) {
 /**
  * 1.5 giphyAPI()
  */
-var giphyAPI = function (result, cb, cbError) {
+var giphyAPI = function (result, cb, cbError, api_key) {
     if (!cbError) {
         cbError = function () {};
     }
     if (!cb) {
-       cb = function (data) {
-           console.log("SUCCESS ===", data);
-       };
-   }
-    var api_key = "sFsVukTCR6VSVrbN8OzUnJuANd3yiBET";
+        cb = function (data) {
+            console.log("SUCCESS ===", data);
+        };
+    }
+    if (!api_key) {
+        $.getJSON("../../keys.json", function (responseData) {
+            return giphyAPI(result,  slackMessenger, function () {
+                console.log("Error!");
+            },
+             responseData.GIPHY_API_KEY);
+        })
+    }
+
     var apiURL = `https://api.giphy.com/v1/gifs/search?q=${result}&api_key=${api_key}`;
     var randomIndex = Math.floor(Math.random() * Math.floor(24));
     console.log("APIURL========", apiURL);
 
     fetch(apiURL)
-    .then(function(response){
-        if (response.ok) {
-            response.json()
-                .then(function (gifResponse){   
-                    console.log("giphy===", gifResponse)                
-                    return cb(gifResponse.data[randomIndex].images.fixed_height_downsampled.url); 
-                })
-        } else {
-            cbError();
-        }
-    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (gifResponse) {
+                        console.log("giphy===", gifResponse)
+                        return cb(gifResponse.data[randomIndex].images.fixed_height_downsampled.url);
+                    })
+            } else {
+                cbError();
+            }
+        })
 };
 
 /**
@@ -191,56 +209,65 @@ var endGame = function (win_lose) {
 
     let message = `You're a ${result}!!!`;
 
+
     slackMessenger(message);
-    giphyAPI(result, slackMessenger, function(){
+    giphyAPI(result, slackMessenger, function () {
         console.log("Error!");
     });
-    
+
+
     // SAVE DATA TO LOCAL STORAGE
 
     // CALL RESET FUNCTION 
 
-   
+
 };
 
 /* ===============[ 2. Document Ready ]=========================*/
+$(function () {
 
-/**
- * 2.1 Add click listeners (add, edit, delete, reset)
- */
-//rollDiceBtnEl.addEventListener("click", rollDice);
-$("#submit-message").on("click", function(){
-    endGame(false);
+
+
+
+
+
+    /**
+     * 2.1 Add click listeners (add, edit, delete, reset)
+     */
+    //rollDiceBtnEl.addEventListener("click", rollDice);
+    $("#submit-message").on("click", function () {
+        endGame(false);
+    })
+
+    // Button to Save Slack Username to Local Storage & Start Game
+    $('#start-btn').on('click', function () {
+        // Get User Input for Slack Username
+        slackName = document.querySelector("#modalSlackName").value.trim();
+        // Push Username to Array (Array gives option of pushing other things)
+        const userArray = {
+            username: slackName
+        };
+        slackInput.push(userArray);
+        // Save User Input to Local Storage
+        localStorage.setItem("slackName", JSON.stringify(slackInput));
+        // Pass Slack Username to Start Game Function, or return error.
+        var slack = slackNameEl.value.trim();
+        if (slack) {
+            $('#user-modal').foundation('close');
+            srtGame(slack);
+            slackNameEl.value = "";
+        } else {
+            alert("Please enter a valid username.");
+        }
+    });
+
+
+    // Button to Roll Dice
+    rollDiceBtnEl.addEventListener("click", function () {
+        event.preventDefault();
+        rollDice(betInputEl.value);
+        betInputEl.value = "";
+    });
+
+
 })
-
-// Button to Save Slack Username to Local Storage & Start Game
-$('#start-btn').on('click', function(){  
-    // Get User Input for Slack Username
-    slackName = document.querySelector("#modalSlackName").value.trim();
-    // Push Username to Array (Array gives option of pushing other things)
-    const userArray = {
-       username: slackName
-    };
-    slackInput.push(userArray);
-    // Save User Input to Local Storage
-    localStorage.setItem("slackName", JSON.stringify(slackInput));
-    // Pass Slack Username to Start Game Function, or return error.
-    var slack = slackNameEl.value.trim();
-    if (slack) {
-        $('#user-modal').foundation('close');
-        srtGame(slack);
-        slackNameEl.value = "";
-    } else {
-    alert("Please enter a valid username.");
-    }
-});
-
-
-// Button to Roll Dice
-rollDiceBtnEl.addEventListener("click", function () {
-    event.preventDefault();
-    rollDice(betInputEl.value);
-    betInputEl.value = "";
-});
-
-
