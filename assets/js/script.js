@@ -116,17 +116,17 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
                 return;
             })
             .fail(function () {
-                $("<img>", {
-                    src: message,
-                    error: function () {
-                        var messageHeader = $("<h3>").text(message);
-                        $("#win-or-lose").append(messageHeader);
-                    },
-                    load: function () {
-                        var gif = $("<img>").addClass("").attr("src", message);
-                        $("#win-or-lose").append(gif);
-                    }
-                });
+                const regex = /^(?:You\'re\ a)/g;
+
+                if (message.search(regex) === -1) {
+                    var gif = $("<img>").addClass("").attr("src", message);
+                    $("#win-or-lose").append(gif);
+                    
+                } else {
+                    var messageHeader = $("<h3>").text(message);
+                    $("#win-or-lose").append(messageHeader);
+                    
+                }
                 console.log("WEB HOOK NOT FOUND!");
                 return;
             })
