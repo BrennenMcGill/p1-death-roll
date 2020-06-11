@@ -192,7 +192,7 @@ var giphyAPI = function (result, cb, cbError) {
                 response.json()
                     .then(function (gifResponse) {
                         console.log("giphy===", gifResponse)
-                        return cb(gifResponse.data[randomIndex].images.original.url);
+                        return cb(gifResponse.data[randomIndex].images.fixed_height_downsampled.url);
                     })
             } else {
                 cbError();
