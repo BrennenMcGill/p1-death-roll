@@ -137,7 +137,8 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
  */
 var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
-    //Temporarily log slack name until start game function is done.
+
+    
     
 }
 /**
