@@ -21,8 +21,14 @@
 
 /* ===============[ 0. GLOBALS ]=========================*/
 var slackNameEl = document.querySelector("#modalSlackName");
-var playerPoints = 100;
-var botPoints = 100;
+var playerStatus = {
+    points: 100,
+    streak: 0,
+    totalWins: 0
+};
+var npcPoints = 100;
+var betInputEl = document.querySelector("#bet-input");
+var playerPointsEl = document.querySelector("#playerPoints");
 var rollDiceBtnEl = document.querySelector("#roll-dice");
 var playerResultEl = document.querySelector("#player-roll");
 var npcResultEl = document.querySelector("#npc-roll");
@@ -30,11 +36,10 @@ var winLoseEl = document.querySelector("#win-or-lose");
 var messageEL = document.getElementById("message");
 const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
 /* ===============[ 1. Functions ]=========================*/
-
 /**
  * 1.1 rollDice()
  */
-var rollDice = function () {
+var rollDice = function (bet) {
     // generate random number between 1 and 100 for both player and npc
     var playerValue = Math.floor(Math.random() * 100) + 1;
     var npcValue = Math.floor(Math.random() * 100) + 1;
@@ -45,7 +50,9 @@ var rollDice = function () {
     var displayNpcValue = document.createElement("p");
     displayNpcValue.innerHTML = "NPC rolled " + npcValue;
     // append player's and npc's results
+    playerResultEl.innerHTML = "";
     playerResultEl.appendChild(displayPlayerValue);
+    npcResultEl.innerHTML = "";
     npcResultEl.appendChild(displayNpcValue);
     // determine winner
     if (playerValue === npcValue) {
@@ -56,13 +63,24 @@ var rollDice = function () {
         console.log("You win!");
         var displayWin = document.createElement("p");
         displayWin.innerHTML = "Congrats!  You Won!";
+        winLoseEl.innerHTML = "";
         winLoseEl.appendChild(displayWin);
+        playerStatus.points = playerStatus.points + parseInt(bet);
+        playerStatus.streak = playerStatus.streak + 1;
+        playerStatus.totalWins = playerStatus.totalWins + 1;
+        pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     } else {
         console.log("You lose!");
         var displayLose = document.createElement("p");
         displayLose.innerHTML = "Sorry, you lost. Try again.";
+        winLoseEl.innerHTML = "";
         winLoseEl.appendChild(displayLose);
+        playerStatus.points = playerStatus.points - bet;
+        playerStatus.streak = 0;
+        playerStatus.totalWins = playerStatus.totalWins;
+        pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     }
+    console.log(bet);
 };
 /**
  * 1.2 slackMessenger()
@@ -112,9 +130,13 @@ var srtGame = function(slack){
     console.log(slack);
 }
  /**
- * 1.3 function()
+ * 1.3 pointSystem()
  */
-
+var pointSystem = function(points, streak, wins) {
+    playerPointsEl.textContent = points;
+    console.log(streak);
+    console.log(wins);
+}
 
 /**
  * 1.4 function()
@@ -122,11 +144,10 @@ var srtGame = function(slack){
 
 /* ===============[ 2. Document Ready ]=========================*/
 
-
 /**
  * 2.1 Add click listeners (add, edit, delete, reset)
  */
-rollDiceBtnEl.addEventListener("click", rollDice);
+//rollDiceBtnEl.addEventListener("click", rollDice);
 $("#submit-message").on("click", slackMessenger)
 
 // Button to Save Slack Username to Local Storage & Start Game
@@ -153,6 +174,10 @@ $('#start-btn').on('click', function(){
 
 
 // Button to Roll Dice
-rollDiceBtnEl.addEventListener("click", rollDice);
+rollDiceBtnEl.addEventListener("click", function () {
+    event.preventDefault();
+    rollDice(betInputEl.value);
+    betInputEl.value = "";
+});
 
 
