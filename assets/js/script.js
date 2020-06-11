@@ -51,7 +51,7 @@ var rollDice = function (bet) {
         return;
     } else if (playerValue > npcValue) {
         $("#win-or-lose").text("").append($("<p>").text(`Congrats! You Won!`));
-        npcPoints = npcPoints - bet;
+        npcPoints = npcPoints - parsInt(bet);
         playerStatus.points = playerStatus.points + parseInt(bet);
         playerStatus.streak++;
         playerStatus.totalWins++;
@@ -59,7 +59,7 @@ var rollDice = function (bet) {
     } else {
         $("#win-or-lose").text("").append($("<p>").text(`Sorry, you lost. Try again.`));
         npcPoints = npcPoints + parseInt(bet);
-        playerStatus.points = playerStatus.points - bet;
+        playerStatus.points = playerStatus.points - parseInt(bet);
         playerStatus.streak = 0;
         pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     }
@@ -197,10 +197,9 @@ var endGame = function (win_lose) {
         console.log("Error!");
     });
 
+
+
     // SAVE DATA TO LOCAL STORAGE
-
-    // CALL RESET FUNCTION 
-
 
 };
 
@@ -231,6 +230,7 @@ $(function () {
                 $('#user-modal').foundation('close')
                 $("#modalInputName").val("")
                 $("#main-container").removeClass("invisible")
+                $("#modal-btn").addClass("invisible")
                 startGame(playerName)
              } else {
                 $("#modal-footer").empty().append($("<p>").text("Please Enter a Username!"))
