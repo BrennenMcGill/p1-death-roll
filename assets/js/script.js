@@ -29,6 +29,7 @@ var playerStatus = {
 var npcPoints = 100;
 var betInputEl = document.querySelector("#bet-input");
 var playerPointsEl = document.querySelector("#playerPoints");
+var npcPointsEl = document.querySelector("#npcPoints");
 var rollDiceBtnEl = document.querySelector("#roll-dice");
 var playerResultEl = document.querySelector("#player-roll");
 var npcResultEl = document.querySelector("#npc-roll");
@@ -65,6 +66,7 @@ var rollDice = function (bet) {
         displayWin.innerHTML = "Congrats!  You Won!";
         winLoseEl.innerHTML = "";
         winLoseEl.appendChild(displayWin);
+        npcPoints = npcPoints - parseInt(bet);
         playerStatus.points = playerStatus.points + parseInt(bet);
         playerStatus.streak = playerStatus.streak + 1;
         playerStatus.totalWins = playerStatus.totalWins + 1;
@@ -75,6 +77,7 @@ var rollDice = function (bet) {
         displayLose.innerHTML = "Sorry, you lost. Try again.";
         winLoseEl.innerHTML = "";
         winLoseEl.appendChild(displayLose);
+        npcPoints = npcPoints + parseInt(bet);
         playerStatus.points = playerStatus.points - bet;
         playerStatus.streak = 0;
         playerStatus.totalWins = playerStatus.totalWins;
@@ -134,6 +137,7 @@ var srtGame = function(slack){
  */
 var pointSystem = function(points, streak, wins) {
     playerPointsEl.textContent = points;
+    npcPointsEl.textContent = npcPoints;
     console.log(streak);
     console.log(wins);
 }
