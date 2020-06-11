@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/f6c4aefac0.js" crossorigin="anonymous"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/images/dice-favicon.jpg">
 </head>
 
 <body>
@@ -27,7 +29,7 @@
                 <h1 class="text-center">Death Roll</h1>
             </div>
         </a>
-        <button type = "button" id = "modal-btn" class="button" data-open="user-modal">Start Playing!</button>
+        <button type="button" id="modal-btn" class="button" data-open="user-modal">Start Playing!</button>
     </header><!-- #main-header -->
 
     <!-- Main Section Start -->
@@ -36,7 +38,7 @@
             <!-- PLAYER POINTS -->
             <div class="cell auto">
                 <div id="player-points">
-                    User Points:  <span id="playerPoints"></span>
+                    User Points: <span id="playerPoints"></span>
                 </div>
                 <div>
                     User Name!
@@ -46,7 +48,7 @@
             <!-- NPC POINTS -->
             <div class="cell auto">
                 <div id="npc-points">
-                    NPC Points:  <span id="npcPoints"></span>
+                    NPC Points: <span id="npcPoints"></span>
                 </div>
                 <div id="npc-name">
                     NPC Name!
@@ -64,7 +66,7 @@
                 </div>
             </div>
             <div class="text-center" id="win-or-lose">
-                
+
             </div>
         </div><!-- BETTING SECTION END-->
         <div>
@@ -83,13 +85,13 @@
     <div class="reveal" id="user-modal" data-reveal>
         <form>
             <div>
-                <label for="modalSlackName">
-                    <h1 class = "font-bold text-center">
-                        <img src="https://img.icons8.com/color/48/000000/slack.png" alt="slack logo"/>
-                        Slack Username
+                <label for="modalInputName">
+                    <h1 class="font-bold text-center">
+                        <img src="./assets/images/dice-icon.png" alt="dice logo" />
+                        Username
                     </h1>
                 </label>
-                <input type="text" id="modalSlackName" placeholder="Enter Username">
+                <input type="text" id="modalInputName" placeholder="Enter Username">
             </div>
         </form>
         <div class="modal-footer">
@@ -97,13 +99,14 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             <button class="button" data-open="instruct-modal">Instructions</button>
-            <button class="button success" id = "start-btn">Begin Game</button>
-      </div>
+            <button class="button success" id="start-btn">Begin Game</button>
+            <span id="modal-footer"></span>
+        </div>
     </div>
 
     <!-- Nested Modal for Instructions -->
     <div class="reveal" id="instruct-modal" data-reveal>
-        <h2 class = "font-bold">HOW TO PLAY</h2>
+        <h2 class="font-bold">HOW TO PLAY</h2>
         <ol>
             <li>instructions 1</li>
             <li>instructions 2</li>
@@ -112,7 +115,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <button class="button" data-open="user-modal">Back</button>
-        </div>
+    </div>
 
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -121,8 +124,10 @@
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script src="./assets/js/script.js"></script>
-    <!-- Initialize Foundation -->    
-    <script>$(document).foundation();</script>
+    <!-- Initialize Foundation -->
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 
 </html>
