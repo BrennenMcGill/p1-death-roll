@@ -135,9 +135,10 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
 /**
  * 1.3 srtGame()
  */
-var startGame = function (slack) {
+var startGame = function (playerName) {
+    $("#user-name").empty().append($("<h3>").text(playerName));
     //Temporarily log slack name until start game function is done.
-    console.log(slack);
+    
 }
 /**
  * 1.4 pointSystem()
@@ -224,7 +225,15 @@ $(function () {
         const userArray = {
                  username: playerName
              }; 
-             (playerName) ? $('#user-modal').foundation('close') && startGame(playerName) && $("#modalInputName").val("") : $("#modal-footer").empty().append($("<p>").text("Please Enter a Username!"))
+
+             if (playerName) {
+                $('#user-modal').foundation('close')
+                $("#modalInputName").val("")
+                $("#main-container").removeClass("invisible")
+                startGame(playerName)
+             } else {
+                $("#modal-footer").empty().append($("<p>").text("Please Enter a Username!"))
+             }
     });
 
 
