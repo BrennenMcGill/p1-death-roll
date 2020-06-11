@@ -116,8 +116,17 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
                 return;
             })
             .fail(function () {
-                var GIF = $("<img>").addClass("").attr("src", message);
-                $("#win-or-lose").append(GIF);
+                $("<img>", {
+                    src: message,
+                    error: function () {
+                        var messageHeader = $("<h3>").text(message);
+                        $("#win-or-lose").append(messageHeader);
+                    },
+                    load: function () {
+                        var gif = $("<img>").addClass("").attr("src", message);
+                        $("#win-or-lose").append(gif);
+                    }
+                });
                 console.log("WEB HOOK NOT FOUND!");
                 return;
             })
