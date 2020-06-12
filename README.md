@@ -11,6 +11,10 @@
 6. DEVELOPMENT
 7. USER STORY
 8. ACCEPTANCE CRITERIA
+9. PROJECT REQUIREMENTS
+10. GRADING REQUIREMENTS
+11. USAGE
+12. FUNCTIONALITY
 
 ---
 
@@ -44,55 +48,70 @@
 
 
 ## **PROJECT REQUIREMENTS**
-- [x] Use a CSS framework other than Bootstrap.
-- [x] Be deployed to GitHub Pages.
-- [x] Be interactive (i.e., accept and respond to user input).
-- [x] Use at least two server-side APIs.
-- [x] Does not use alerts, confirms, or prompts (use modals).
-- [x] Use client-side storage to store persistent data.
+    [x] Use a CSS framework other than Bootstrap.
+    [x] Be deployed to GitHub Pages.
+    [x] Be interactive (i.e., accept and respond to user input).
+    [x] Use at least two server-side APIs.
+    [x] Does not use alerts, confirms, or prompts (use modals).
+    [x] Use client-side storage to store persistent data.
+    [x] Be responsive.
+    [x] Have a polished UI.
+    [x] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
+    [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-- [x] Be responsive.
-- [x] Have a polished UI.
-- [x] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
-- [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+## **Presentation Requirements**
+    Group should give a 10-minute presentation on the project, with about 7 minutes devoted to the presentation itself, followed by a 3-minute Question & Answer session. Use the Project Presentation Template to address the following:
+
+        [x] Elevator pitch: A one-minute description of your application.
+
+        [x] Concept: What is your user story? What was your motivation for development?
+
+        [x] Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+
+        [x] Demo: Show your stuff!
+
+        [x] Directions for future development.
+
+        [x] Links to the deployed application and the GitHub repository.
+
 
 ## **GRADING REQUIREMENTS**
 
-### Technical Acceptance Criteria: 25%
-- [x] Application uses at least two server-side APIs.
-- [x] Application uses client-side storage to store persistent data.
-- [x] Application doesn't use JS alerts, prompts, or confirms (uses modals instead).
-- [x] Application uses a CSS framework other than Bootstrap.
-- [x] Application is interactive (accepts and responds to user input).
+### <center>Technical Acceptance Criteria: 25%</center>
+    [x] Application uses at least two server-side APIs.
+    [x] Application uses client-side storage to store persistent data.
+    [x] Application doesn't use JS alerts, prompts, or confirms (uses modals instead).
+    [x] Application uses a CSS framework other than Bootstrap.
+    [x] Application is interactive (accepts and responds to user input).
 
-### Concept: 10%
-- [x] Application should be a unique and novel idea.
-- [x] Your group should clearly and concisely articulate your project idea.
+### <center>Concept: 10%</center>
+    [x] Application should be a unique and novel idea.
+    [x] Your group should clearly and concisely articulate your project idea.
 
-### Deployment: 20%
-- [x] Application deployed at live URL and loads with no errors.
-- [x] Application GitHub URL submitted.
-- [x] Portfolio at live URL submitted, featuring project.
+### <center>Deployment: 20%</center>
+    [x] Application deployed at live URL and loads with no errors.
+    [x] Application GitHub URL submitted.
+    [x] Portfolio at live URL submitted, featuring project.
 
-### Respository Quality: 10%
-- [x] Repository has a unique name.
-- [x] Repository follows best practices for file structure and naming conventions.
-- [x] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-- [x] Repository contains multiple descriptive commit messages.
-- [x] Repository contains a quality README file with description, screenshot, and link to deployed application.
+### <center>Respository Quality: 10%</center>
+    [x] Repository has a unique name.
+    [x] Repository follows best practices for file structure and naming conventions.
+    [x] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+    [x] Repository contains multiple descriptive commit messages.
+    [x] Repository contains a quality README file with description, screenshot, and link to deployed application.
 
-### Application Quality: 15%
-- [x] Application user experience is intuitive and easy to navigate.
-- [x] Application user interface style is clean and polished.
-- [x] Application is responsive.
+### <center>Application Quality: 15%</center>
+    [x] Application user experience is intuitive and easy to navigate.
+    [x] Application user interface style is clean and polished.
+    [x] Application is responsive.
 
-### Presentation: 10%
-- [x] Your group should present using Powerpoint or a similar presentation software.
-- [x] Every group member should speak during the presentation.
-- [x] Your presentation should follow the Project Presentation Template (Links to an external site.).
+### <center>Presentation: 10%</center>
+    [x] Your group should present using Powerpoint or a similar presentation software.
+    [x] Every group member should speak during the presentation.
+    [x] Your presentation should follow the Project Presentation Template.
 
-### Collaboration: 10%
-- [x] There are no major disparities in the number of GitHub contributions between group members.
+### <center>Collaboration: 10%</center>
+    [x] There are no major disparities in the number of GitHub contributions between group members.
 
 ---
 
