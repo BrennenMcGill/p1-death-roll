@@ -4,17 +4,18 @@
 > Here is the overall purpose of the assignment.
 
 ## **TABLE OF CONTENTS**
-1. PROJECT DESCRIPTION
-2. TABLE OF CONTENTS
-4. APPLICATION LINKS
-5. CONTRIBUTORS
-6. DEVELOPMENT
-7. USER STORY
-8. ACCEPTANCE CRITERIA
-9. PROJECT REQUIREMENTS
-10. GRADING REQUIREMENTS
-11. USAGE
-12. FUNCTIONALITY
+[1. PROJECT DESCRIPTION]()  
+[2. TABLE OF CONTENTS]()  
+[4. APPLICATION LINKS]()  
+[5. CONTRIBUTORS]()  
+[6. DEVELOPMENT]()  
+[7. USER STORY]()  
+[8. ACCEPTANCE CRITERIA]()  
+[9. PROJECT REQUIREMENTS]()  
+[10. PRESENTATION REQUIREMENTS]()  
+[11. GRADING REQUIREMENTS]()  
+[12. USAGE]()  
+[13. FUNCTIONALITY]()  
 
 ---
 
@@ -59,7 +60,7 @@
     [x] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
     [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-## **Presentation Requirements**
+## **PRESENTATION REQUIREMENTS**
     Group should give a 10-minute presentation on the project, with about 7 minutes devoted to the presentation itself, followed by a 3-minute Question & Answer session. Use the Project Presentation Template to address the following:
 
         [x] Elevator pitch: A one-minute description of your application.
