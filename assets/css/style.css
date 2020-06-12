@@ -20,6 +20,13 @@ body {
     font-size: 150px;
     color: grey;
 }
+.instructions {
+    color: black;
+}
+
+li {
+    list-style-type: none;
+}
 
 .bet {
     padding: 30px;
