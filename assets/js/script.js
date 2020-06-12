@@ -51,7 +51,7 @@ var rollDice = function (bet) {
         return;
     } else if (playerValue > npcValue) {
         $("#win-or-lose").text("").append($("<p>").text(`Congrats! You Won!`));
-        npcPoints = npcPoints - parsInt(bet);
+        npcPoints = npcPoints - parseInt(bet);
         playerStatus.points = playerStatus.points + parseInt(bet);
         playerStatus.streak++;
         playerStatus.totalWins++;
@@ -198,7 +198,11 @@ var endGame = function (win_lose) {
     });
 
 
-
+    var popup = new Foundation.Reveal($('#end-game-modal'));
+    popup.open();
+    $('#end-game-modal').removeClass('invisible')
+    $('#main-container').addClass('invisible');
+    $('#header').addClass('invisible');
     // SAVE DATA TO LOCAL STORAGE
 
 };
