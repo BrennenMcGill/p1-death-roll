@@ -1,4 +1,26 @@
+body {
+    color: white;
+}
+
 .center {
     display: block;
     margin: 0 auto;
+}
+
+@font-face {
+    font-family: october-crow;
+    src: url(./october-crow-font/october-crow.ttf);
+}
+
+.october-crow-font {
+    font-family: october-crow;
+}
+
+.title {
+    font-size: 150px;
+    color: grey;
+}
+
+.bet {
+    padding: 30px;
 }
