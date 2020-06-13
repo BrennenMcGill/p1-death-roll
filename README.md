@@ -6,9 +6,7 @@ and acceptance criteria, to aid development.The group should utilize the font-en
 The group is expected to present the project to the class and convince an audience that it serves a purpose. Full project and presentation requirements
 are detailed below.  
   
->Death Roll is a gambling game highly utilized in gaming platforms, such as World of Warcraft. This betting game is used to not only bet game loot, money,
-or other valuable goods, but also to bet real-world materials. This application provides a user interface to aid in Death Roll game play. The usage and
-functionality of the application are outlines below.
+>Death Roll is a gambling game highly utilized in gaming platforms, such as World of Warcraft. This betting game is used to not only bet game loot, money, or other valuable goods, but also to bet real-world materials. This application provides a user interface to aid in Death Roll game play. The usage and functionality of the application are outlines below.
 
 ## **TABLE OF CONTENTS** 
 [1. PROJECT DESCRIPTION](#PROJECT-DESCRIPTION)  
