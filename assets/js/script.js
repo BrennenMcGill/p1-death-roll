@@ -36,13 +36,28 @@ const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
  * 1.1 rollDice()
  */
 var rollDice = function (bet) {
+    // remove winner and loser classes, if any
+    if ($("#player-box").hasClass("box-winner")) {
+        $("#player-box").removeClass("box-winner");
+        $("#player-result").removeClass("result-winner");
+        $("#npc-box").removeClass("box-loser");
+        $("#npc-result").removeClass("result-loser");
+    }
+    if ($("#player-box").hasClass("box-loser")) {
+        $("#player-box").removeClass("box-loser");
+        $("#player-result").removeClass("result-loser");
+        $("#npc-box").removeClass("box-winner");
+        $("#npc-result").removeClass("result-winner");
+    }
     // generate random number between 1 and 100 for both player and npc
     var playerValue = Math.floor(Math.random() * 100) + 1;
     var npcValue = Math.floor(Math.random() * 100) + 1;
 
-    //create p tag to display player/npc result
-    $("#player-roll").empty().append($("<p>").text(`You rolled ${playerValue}`));
-    $("#npc-roll").empty().append($("<p>").text(`NPC rolled ${npcValue}`));
+    // create p tag to display player/npc result
+    $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
+    $("#player-roll-result").empty().append($("<span>").text(`${playerValue}`));
+    $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
+    $("#npc-roll-result").empty().append($("<span>").text(`${npcValue}`));
 
 
     // DETERMINE ROUND WINNER
@@ -50,14 +65,20 @@ var rollDice = function (bet) {
         rollDice();
         return;
     } else if (playerValue > npcValue) {
-        $("#win-or-lose").text("").append($("<p>").text(`Congrats! You Won!`));
-        npcPoints = npcPoints - parsInt(bet);
+        $("#player-box").addClass("box-winner");
+        $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+        $("#npc-box").addClass("box-loser");
+        $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+        npcPoints = npcPoints - parseInt(bet);
         playerStatus.points = playerStatus.points + parseInt(bet);
         playerStatus.streak++;
         playerStatus.totalWins++;
         pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     } else {
-        $("#win-or-lose").text("").append($("<p>").text(`Sorry, you lost. Try again.`));
+        $("#player-box").addClass("box-loser");
+        $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+        $("#npc-box").addClass("box-winner");
+        $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
         npcPoints = npcPoints + parseInt(bet);
         playerStatus.points = playerStatus.points - parseInt(bet);
         playerStatus.streak = 0;
@@ -137,8 +158,8 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
  */
 var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
-
-    
+    $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
+    $("#npcPoints").empty().append($("<span>").text(npcPoints));
     
 }
 /**

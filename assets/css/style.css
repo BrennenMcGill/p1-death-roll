@@ -1,4 +1,99 @@
+body {
+    color: white;
+}
+
 .center {
     display: block;
     margin: 0 auto;
+}
+
+.coins-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: none;
+    width: 300px;
+    filter: grayscale(60%);
+}
+
+@font-face {
+    font-family: october-crow;
+    src: url(./october-crow-font/october-crow.ttf);
+}
+
+.october-crow-font {
+    font-family: october-crow;
+    color: gray;
+}
+
+.title {
+    font-size: 125px;
+    padding-bottom: 20px;
+}
+
+.h4 {
+    font-size: 25px;
+    display: inline;
+}
+
+.break {
+    padding-top: 30px;
+}
+
+.roll {
+    font-size: 40px;
+}
+
+.versus {
+    font-size: 75px;
+    padding: 100px 0;
+}
+
+.instructions {
+    color: black;
+}
+
+li {
+    list-style-type: none;
+}
+
+.box {
+    margin:25px;
+    padding: 10px;
+    height: auto;
+    border: solid black;
+    border-color: grey;
+    background-color: rgba(255, 255, 255, 20%);
+    border-width: 3px 4px 3px 5px;
+    border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+
+hr {
+    transform: rotate(-1deg);
+    width: 95%;
+}
+
+.box-winner {
+    border-color: lightgreen;
+}
+
+.box-loser {
+    border-color: red;
+}
+
+.result-winner {
+    color: lightgreen;
+}
+
+.result-loser {
+    color: red;
+}
+
+.bet {
+    padding-bottom: 30px;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
 }

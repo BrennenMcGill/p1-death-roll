@@ -21,61 +21,75 @@
     <link rel="icon" type="image/png" href="./assets/images/dice-favicon.jpg">
 </head>
 
-<body>
+<body style="background-image: url('./assets/images/dark-bg.png');">
     <!-- Main Header -->
     <header>
         <a href="./index.html">
+            <div>
+                <img src="assets/images/coins.png" class="coins-img"/>
+            </div>
             <div class="">
-                <h1 class="text-center">Death Roll</h1>
+                <h1 class="text-center october-crow-font title">Death Roll</h1>
             </div>
         </a>
-        <button type="button" id="modal-btn" class="button large center" data-open="user-modal">Start Playing!</button>
-    </header><!-- #main-header -->
-
+        <button type="button" id="modal-btn" class="button large center" data-open="user-modal">Start Playing</button>
+    </header>
+    <!-- #main-header -->
     <!-- Main Section Start -->
     <main id="main-container" class="invisible">
         <div class="grid-x text-center">
             <!-- PLAYER POINTS -->
-            <div class="cell auto">
+            <div class="cell auto box" id="player-box">
+                <div id="user-name"></div>
+                <hr>
                 <div id="player-points">
-                    User Points: <span id="playerPoints"></span>
+                    <p class="h4">Gold:  </p><span id="playerPoints" class="h4"></span>
                 </div>
-                <div id="user-name">
-                    
+                <div>
+                    <h4 id="player-rolled" class="break"></h4><span id="player-roll-result" class="roll"></span>
                 </div>
-                <div id="player-roll"></div>
-            </div><!-- PLAYER POINTS END-->
-            <!-- NPC POINTS -->
+                <div id="player-result"></div>
+            </div>
+            <!-- PLAYER POINTS END -->
+            <!-- VERSUS -->
             <div class="cell auto">
-                <div id="npc-points">
-                    NPC Points: <span id="npcPoints"></span>
-                </div>
+                <p class="text-center october-crow-font versus" >vs</p>
+            </div>
+            <!-- VERSUS END -->
+            <!-- NPC POINTS -->
+            <div class="cell auto box" id="npc-box">
                 <div id="npc-name">
                     <h3>NPC!</h3>
                 </div>
-                <div id="npc-roll"></div>
-            </div><!-- NPC POINTS END -->
+                <hr>
+                <div id="npc-points">
+                    <p class="h4">Gold:  </p><span id="npcPoints" class="h4"></span>
+                </div>
+                <div>
+                    <h4 id="npc-rolled" class="break"></h4><span id="npc-roll-result" class="roll"></span>
+                </div>
+                <div id="npc-result"></div>
+            </div>
+            <!-- NPC POINTS END -->
         </div>
         <!-- BETTING SECTION -->
-        <div class="row column small-5 medium-4 large-3 align-center">
-            <div class="input-group input-group-rounded small-3">
+        <div class="column row small-3-centered">
+            <div><h2 class="text-center october-crow-font">Place bet & roll</h2></div>
+            <div class="input-group input-group-rounded bet">
                 <span class="input-group-label">$$</span>
-                <input type="number" id="bet-input" class="input-group-field" />
+                <input type="number" id="bet-input" class="input-group-field" style="text-align: right" />
                 <div class="input-group-button">
-                    <button type="submit" id="roll-dice" class="button alert" value="Roll Dice">Roll Dice</button>
+                    <button type="submit" id="roll-dice" class="button alert" value="Roll Dice">Roll</button>
                 </div>
             </div>
-            <div class="text-center" id="win-or-lose">
-
-            </div>
-        </div><!-- BETTING SECTION END-->
+            <div class="text-center" id="win-or-lose"></div>
+        </div>
+        <!-- BETTING SECTION END-->
     </main>
     <!-- Main Section End -->
     <!-- Footer -->
-    <footer id="main-footer">
-
-    </footer><!-- #main-footer -->
-
+    <footer id="main-footer"></footer>
+    <!-- #main-footer -->
     <!-- User Input Modal -->
     <div class="reveal" id="user-modal" data-reveal>
         <form>
@@ -98,20 +112,37 @@
             <span id="modal-footer"></span>
         </div>
     </div>
-
     <!-- Nested Modal for Instructions -->
-    <div class="reveal" id="instruct-modal" data-reveal>
+    <div class="reveal instructions" id="instruct-modal" data-reveal>
         <h2 class="font-bold">HOW TO PLAY</h2>
-        <ol>
-            <li>instructions 1</li>
-            <li>instructions 2</li>
-        </ol>
+        <p>Are you new to Death Roll? No problem. The game is simple.  Here is how it works.</p>
+        <h3>How to Win</h3>
+        <p>To win you must take all your opponent's gold by betting on the outcome of the roll of the dice.</p>
+        <h3>Game Set Up</h3>
+        <p>At the beginning of the game, you and your oppponent each start with 100 gold.</p>
+        <h3>Game Play</h3>
+        <p>The game is played through a series of betting rounds.</p>
+            <ul>
+                <li>
+                    <h4>Placing a Bet</h4>
+                    <p>Each round you place a bet. Your bet must be higher than zero and cannot exceed the amount of gold you currently possess.</p>
+                </li>
+                <li>
+                    <h4>Rolling the Die</h4>
+                    <p>Once you've placed your bet you roll the dice. You and your opponent each roll a figurative 100-sided die. If you roll higher than your opponent, you win and collect gold from your opponent equal to the amount bet.  If you roll lower than your opponent, you lose and your opponent takes your gold. Once gold is transfered the round is over.</p>
+                </li>
+                <li>
+                    <h4>Next Round</h4>
+                <p>If you and your opponent still have money you proceed to play another round of betting and rolling.  You continue to play round after round until one of you has taken all the gold from the other.</p>
+                </li>
+            </ul>
+        <p>That's it. Pretty simple.</p>
+        <p>Enough talk. Give it a try!</p>
         <button class="close-button" data-close aria-label="Close reveal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
         <button class="button" data-open="user-modal">Back</button>
     </div>
-
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed JavaScript -->
@@ -124,5 +155,4 @@
         $(document).foundation();
     </script>
 </body>
-
 </html>
