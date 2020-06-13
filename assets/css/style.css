@@ -7,6 +7,16 @@ body {
     margin: 0 auto;
 }
 
+.coins-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: none;
+    width: 300px;
+    filter: grayscale(60%);
+}
+
 @font-face {
     font-family: october-crow;
     src: url(./october-crow-font/october-crow.ttf);
@@ -17,9 +27,17 @@ body {
 }
 
 .title {
-    font-size: 150px;
+    font-size: 125px;
     color: grey;
+    padding-bottom: 20px;
 }
+
+.versus {
+    font-size: 75px;
+    color: grey;
+    padding: 100px 0;
+}
+
 .instructions {
     color: black;
 }
@@ -28,6 +46,36 @@ li {
     list-style-type: none;
 }
 
+.box {
+    margin:25px;
+    padding: 10px;
+    height:250px;
+    border: solid black;
+    border-color: grey;
+    border-width: 3px 4px 3px 5px;
+    border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
+    transform: rotate(2deg);
+}
+
+.box-winner {
+    border-color: green;
+}
+
+.box-loser {
+    border-color: red;
+}
+
+.result-winner {
+    color: green;
+}
+
+.result-loser {
+    color: red;
+}
+
 .bet {
-    padding: 30px;
+    padding-top: 50px;
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
 }
