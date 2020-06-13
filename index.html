@@ -137,13 +137,13 @@
     </div>
 
     <!-- End Game Modal-->
-    <div class="reveal invisible end-game-modal" id="end-game-modal" data-reveal>
+    <div class="reveal invisible end-game-modal" id="end-game-modal" data-reveal data-close-on-click="false" data-close-on-esc="false" data-closeable>
         <div>
             <h1 class="font-bold text-center">Final Score</h1>
             <p>Score: </p> <h5 id="final-score"></h5> 
             <p>Wins: </p> <h5 id="final-wins"></h5>
             <p>streak <img src="assets/images/fire.svg`" alt=""> : </p> <h5 id="final-streak"></h5>
-            <button class="button" id="reset-btn">RESET</button>
+            <button class="button" id="reset-btn" aria-label="Dismiss alert" type="button" data-close>RESET</button>
         </div>
     </div>
     
