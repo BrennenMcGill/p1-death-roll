@@ -24,17 +24,29 @@ body {
 
 .october-crow-font {
     font-family: october-crow;
+    color: gray;
 }
 
 .title {
     font-size: 125px;
-    color: grey;
     padding-bottom: 20px;
+}
+
+.h4 {
+    font-size: 25px;
+    display: inline;
+}
+
+.break {
+    padding-top: 30px;
+}
+
+.roll {
+    font-size: 40px;
 }
 
 .versus {
     font-size: 75px;
-    color: grey;
     padding: 100px 0;
 }
 
@@ -49,16 +61,22 @@ li {
 .box {
     margin:25px;
     padding: 10px;
-    height:250px;
+    height: auto;
     border: solid black;
     border-color: grey;
+    background-color: rgba(255, 255, 255, 20%);
     border-width: 3px 4px 3px 5px;
     border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
     transform: rotate(2deg);
 }
 
+hr {
+    transform: rotate(-1deg);
+    width: 95%;
+}
+
 .box-winner {
-    border-color: green;
+    border-color: lightgreen;
 }
 
 .box-loser {
@@ -66,7 +84,7 @@ li {
 }
 
 .result-winner {
-    color: green;
+    color: lightgreen;
 }
 
 .result-loser {
@@ -74,7 +92,7 @@ li {
 }
 
 .bet {
-    padding-top: 50px;
+    padding-bottom: 30px;
     width: 320px;
     margin-left: auto;
     margin-right: auto;

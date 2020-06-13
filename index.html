@@ -33,39 +33,48 @@
             </div>
         </a>
         <button type="button" id="modal-btn" class="button large center" data-open="user-modal">Start Playing</button>
-    </header><!-- #main-header -->
-
+    </header>
+    <!-- #main-header -->
     <!-- Main Section Start -->
     <main id="main-container" class="invisible">
         <div class="grid-x text-center">
             <!-- PLAYER POINTS -->
             <div class="cell auto box" id="player-box">
                 <div id="user-name"></div>
+                <hr>
                 <div id="player-points">
-                    <h5>Gold:  </h5><span id="playerPoints"></span>
+                    <p class="h4">Gold:  </p><span id="playerPoints" class="h4"></span>
                 </div>
-                <div id="player-roll"></div>
+                <div>
+                    <h4 id="player-rolled" class="break"></h4><span id="player-roll-result" class="roll"></span>
+                </div>
                 <div id="player-result"></div>
             </div>
-            <!-- PLAYER POINTS END-->
-            <!-- Versus -->
+            <!-- PLAYER POINTS END -->
+            <!-- VERSUS -->
             <div class="cell auto">
                 <p class="text-center october-crow-font versus" >vs</p>
             </div>
+            <!-- VERSUS END -->
             <!-- NPC POINTS -->
             <div class="cell auto box" id="npc-box">
                 <div id="npc-name">
                     <h3>NPC!</h3>
                 </div>
+                <hr>
                 <div id="npc-points">
-                    <h5>Gold:  </h5><span id="npcPoints"></span>
+                    <p class="h4">Gold:  </p><span id="npcPoints" class="h4"></span>
                 </div>
-                <div id="npc-roll"></div>
+                <div>
+                    <h4 id="npc-rolled" class="break"></h4><span id="npc-roll-result" class="roll"></span>
+                </div>
                 <div id="npc-result"></div>
-            </div><!-- NPC POINTS END -->
+            </div>
+            <!-- NPC POINTS END -->
         </div>
         <!-- BETTING SECTION -->
         <div class="column row small-3-centered">
+            <div><h2 class="text-center october-crow-font">Place bet & roll</h2></div>
             <div class="input-group input-group-rounded bet">
                 <span class="input-group-label">$$</span>
                 <input type="number" id="bet-input" class="input-group-field" style="text-align: right" />
@@ -73,14 +82,14 @@
                     <button type="submit" id="roll-dice" class="button alert" value="Roll Dice">Roll</button>
                 </div>
             </div>
-        </div><!-- BETTING SECTION END-->
+            <div class="text-center" id="win-or-lose"></div>
+        </div>
+        <!-- BETTING SECTION END-->
     </main>
     <!-- Main Section End -->
     <!-- Footer -->
-    <footer id="main-footer">
-
-    </footer><!-- #main-footer -->
-
+    <footer id="main-footer"></footer>
+    <!-- #main-footer -->
     <!-- User Input Modal -->
     <div class="reveal" id="user-modal" data-reveal>
         <form>
@@ -103,7 +112,6 @@
             <span id="modal-footer"></span>
         </div>
     </div>
-
     <!-- Nested Modal for Instructions -->
     <div class="reveal instructions" id="instruct-modal" data-reveal>
         <h2 class="font-bold">HOW TO PLAY</h2>
@@ -135,7 +143,6 @@
         </button>
         <button class="button" data-open="user-modal">Back</button>
     </div>
-
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed JavaScript -->
@@ -148,5 +155,4 @@
         $(document).foundation();
     </script>
 </body>
-
 </html>
