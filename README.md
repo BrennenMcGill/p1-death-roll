@@ -48,18 +48,17 @@
 > SO THAT I can make the leaderboard  
 
 ## **ACCEPTANCE CRITERIA**
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-
+> GIVEN I am playing a Death Roll game  
+> WHEN I click on the button to start playing  
+> THEN I can input my name and read the game instructions  
+> WHEN I initiate the game  
+> THEN I place my bet and roll the dice  
+> WHEN one rolled number is higher than the opponent's  
+> THEN the higher roll wins and collects the opponent's money in the amount bet  
+> WHEN either player runs out of money  
+> THEN the game is over and the player with money left wins  
+> When the game is over  
+> THEN I can save my score and play again  
 
 ## **PROJECT REQUIREMENTS**
     [x] Use a CSS framework other than Bootstrap.
@@ -71,7 +70,7 @@ THEN I am again presented with current and future conditions for that city
     [x] Be responsive.
     [x] Have a polished UI.
     [x] Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
-    [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+    [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application.
 
 ## **PRESENTATION REQUIREMENTS**
     Group should give a 10-minute presentation on the project, with about 7 minutes devoted to the presentation itself, followed by a 3-minute Question & Answer session. Use the Project Presentation Template to address the following:
