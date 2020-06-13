@@ -26,9 +26,9 @@
 ## **CONTRIBUTORS** 
 | Brandon Jackson | Brennen McGill | Jeremy Collins | Morgan Hansen |
 | :------: | :------: |  :------: | :------: |
-| Phone: (xxx) xxx-xxxx | Phone: (yyy) yyy-yyyy | Phone: (zzz) zzz-zzzz | Phone: (208) 807-4913 |
-| Email: <xx@gmail.com> | Email: <yy@gmail.com> | Email: <zz@gmail.com> | Email: <mdhansen19@gmail.com> |
-| [LinkedIn]() | [LinkedIn]() | [LinkedIn]() | [LinkedIn](https://www.linkedin.com/in/morgan-hansen-47235872/) |
+| <brandonljackson@gmail.com> | <brennen.mcgill667@gmail.com> | <garves44@gmail.com> | <mdhansen19@gmail.com> |
+| [github](https://github.com/brandonljackson23) | [github](https://github.com/BrennenMcGill) | [github](https://github.com/garves44) | [github](https://github.com/mhans19) |
+| [LinkedIn](https://www.linkedin.com/in/brandonljackson23/) |  | [LinkedIn](https://www.linkedin.com/in/jeremy-collins-209545194/) | [LinkedIn](https://www.linkedin.com/in/morgan-hansen-47235872/) |
 
 ## **DEVELOPMENT**
 > This application was developed with the following application structures:
