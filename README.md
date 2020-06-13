@@ -1,7 +1,14 @@
 # <div align="center">**DEATH ROLL**</div>
 
 ## **PROJECT DESCRIPTION**
-> Here is the overall purpose of the assignment.
+> The purpose of this project is to collaboratively develop an application that meets a real-world need. The project should include a quality user story
+and acceptance criteria, to aid development.The group should utilize the font-end development skills learned in the first six modules of this course.
+The group is expected to present the project to the class and convince an audience that it serves a purpose. Full project and presentation requirements
+are detailed below.  
+  
+>Death Roll is a gambling game highly utilized in gaming platforms, such as World of Warcraft. This betting game is used to not only bet game loot, money,
+or other valuable goods, but also to bet real-world materials. This application provides a user interface to aid in Death Roll game play. The usage and
+functionality of the application are outlines below.
 
 ## **TABLE OF CONTENTS** 
 [1. PROJECT DESCRIPTION](#PROJECT-DESCRIPTION)  
