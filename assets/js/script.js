@@ -86,7 +86,7 @@ var rollDice = function (bet) {
     }
 
     // DETERMINE GAME WINNER
-    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true) : endGame(false)) : () => {return};     
+    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};     
 };
 /**
  * 1.2 slackMessenger()
@@ -204,11 +204,13 @@ var giphyAPI = function (result, cb, cbError) {
 /**
  * 1.6 endGame()
  */
-var endGame = function (win_lose) {
+var endGame = function (win_lose, points, wins, streak) {
     if (win_lose) {
         result = "winner";
+        $('#final-score').removeClass().text(points).addClass('result-winner');
     } else {
         result = "loser";
+        $('#final-score').removeClass().text(points).addClass('result-loser');
     }
 
     let message = `You're a ${result}!!!`;
@@ -219,8 +221,14 @@ var endGame = function (win_lose) {
     });
 
 
-
+    var popup = new Foundation.Reveal($('#end-game-modal'));
+    popup.open();
+    $('#end-game-modal').removeClass('invisible')
+    $('#final-wins').text(wins);
+    $('#final-streak').text(streak);
     // SAVE DATA TO LOCAL STORAGE
+
+    $('#reset-btn').on('click', resetGame);
 
 };
 
@@ -228,7 +236,23 @@ var endGame = function (win_lose) {
  * 1.7 resetGame()
  */
 var resetGame = function () {
-
+    $('#win-or-lose').empty();
+    $('#end-game-modal').addClass('invisible')
+    $("#npc-box").removeClass();
+    $("#npc-box").addClass('cell auto box');
+    $('#npc-result').remove();
+    $('#npc-roll').remove();
+    $("#player-box").removeClass();
+    $("#player-box").addClass('cell auto box');
+    $('#player-result').remove();
+    $('#player-roll').remove();
+    playerStatus.points = 100;
+    playerStatus.streak = 0;
+    playerStatus.totalWins = 0;
+    npcPoints = 100;
+    $("#playerPoints").empty().append($("<h5>").text(playerStatus.points));
+    $("#npcPoints").empty().append($("<h5>").text(npcPoints));
+    console.log(playerStatus.points, playerStatus.streak, playerStatus.totalWins, npcPoints);
 };
 
 /* ===============[ 2. Document Ready ]=========================*/
