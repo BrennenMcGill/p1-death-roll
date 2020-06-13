@@ -2,11 +2,12 @@
 
 ## **PROJECT DESCRIPTION**
 > The purpose of this project is to collaboratively develop an application that meets a real-world need. The project should include a quality user story
-and acceptance criteria, to aid development.The group should utilize the font-end development skills learned in the first six modules of this course.
-The group is expected to present the project to the class and convince an audience that it serves a purpose. Full project and presentation requirements
-are detailed below.  
-  
->Death Roll is a gambling game highly utilized in gaming platforms, such as World of Warcraft. This betting game is used to not only bet game loot, money, or other valuable goods, but also to bet real-world materials. This application provides a user interface to aid in Death Roll game play. The usage and functionality of the application are outlines below.
+and acceptance criteria to aid development.The group should utilize the font-end development skills learned in the first six modules of the course.
+The group is expected to present the project and convince an audience that it serves a purpose. Full project and presentation requirements are detailed below.  
+
+> The COVID-19 Pandemic, the Black Lives Matter Movement, and natural phenomenons such as earthquakes and fires, have quickly moved to the forefront of concern across the world. As a result, Americans are experiencing higher instances of depression and anxiety ([More Information](https://www.verywellmind.com/how-video-games-relieve-stress-4110349)). During periods of high stress, fear, anxiety, and depression, gaming has become a widely used approach for stress recovery ([More Information](https://www.verywellmind.com/how-video-games-relieve-stress-4110349)). These heighted mental health concerns, coupled with millions of Americans forced to stay home, have led to a surge in the gaming industry ([More Information](https://www.washingtonpost.com/video-games/2020/05/12/video-game-industry-coronavirus/)). Gaming platforms have grown in demand, and this project aims to meet a small piece of that need. 
+
+> Death Roll is a gambling game highly utilized in gaming platforms, such as World of Warcraft. This betting game is used to not only bet game loot, money, or other valuable goods, but also to bet real-world materials. This application provides a user interface to aid in Death Roll game play. We hope that this fun game can help allieviate the increased anxiety and depression rates during these unprecedented times. The usage and functionality of the application are outlined below.
 
 ## **TABLE OF CONTENTS** 
 [1. PROJECT DESCRIPTION](#PROJECT-DESCRIPTION)  
@@ -36,7 +37,7 @@ are detailed below.
 | [LinkedIn](https://www.linkedin.com/in/brandonljackson23/) |  | [LinkedIn](https://www.linkedin.com/in/jeremy-collins-209545194/) | [LinkedIn](https://www.linkedin.com/in/morgan-hansen-47235872/) |
 
 ## **DEVELOPMENT**
-This application was developed with the following application structures:
+> This application was developed with the following application structures:
 1. [Hypertext Markup Language (HTML)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 2. [Cascading Style Sheets (CSS)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 3. [JavaScript (js)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -58,8 +59,8 @@ This application was developed with the following application structures:
 > THEN I can input my name and read the game instructions  
 > WHEN I initiate the game  
 > THEN I place my bet and roll the dice  
-> WHEN a player's rolled number is higher than the opponent's  
-> THEN the higher roll wins and that player collects the opponent's money in the amount bet  
+> WHEN one rolled number is higher than the opponent's  
+> THEN the higher roll wins and collects the opponent's money in the amount bet  
 > WHEN either player runs out of money  
 > THEN the game is over and the player with money left wins  
 > When the game is over  
@@ -86,6 +87,7 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 - [x] Demo: Show your stuff!
 - [x] Directions for future development.
 - [x] Links to the deployed application and the GitHub repository.
+
 
 ## **GRADING REQUIREMENTS**
 
@@ -128,7 +130,7 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 ---
 
 ## **USAGE**
-> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user should request to join the Slack channel
+> Here is where we will note the Slack API Key and how/where to insert.
 
 ## **FUNCTIONALITY**
 
