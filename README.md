@@ -73,53 +73,53 @@
 - [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application.
 
 ## **PRESENTATION REQUIREMENTS**
-    Group should give a 10-minute presentation on the project, with about 7 minutes devoted to the presentation itself, followed by a 3-minute Question & Answer session. Use the Project Presentation Template to address the following:
+Group should give a 10-minute presentation on the project, with about 7 minutes devoted to the presentation itself, followed by a 3-minute Question & Answer session. Use the Project Presentation Template to address the following:
 
-    [x] Elevator pitch: A one-minute description of your application.
-    [x] Concept: What is your user story? What was your motivation for development?
-    [x] Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
-    [x] Demo: Show your stuff!
-    [x] Directions for future development.
-    [x] Links to the deployed application and the GitHub repository.
+- [x] Elevator pitch: A one-minute description of your application.
+- [x] Concept: What is your user story? What was your motivation for development?
+- [x] Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+- [x] Demo: Show your stuff!
+- [x] Directions for future development.
+- [x] Links to the deployed application and the GitHub repository.
 
 
 ## **GRADING REQUIREMENTS**
 
 ### <div align="center">Technical Acceptance Criteria: 25%</div>
-    [x] Application uses at least two server-side APIs.
-    [x] Application uses client-side storage to store persistent data.
-    [x] Application doesn't use JS alerts, prompts, or confirms (uses modals instead).
-    [x] Application uses a CSS framework other than Bootstrap.
-    [x] Application is interactive (accepts and responds to user input).
+- [x] Application uses at least two server-side APIs.
+- [x] Application uses client-side storage to store persistent data.
+- [x] Application doesn't use JS alerts, prompts, or confirms (uses modals instead).
+- [x] Application uses a CSS framework other than Bootstrap.
+- [x] Application is interactive (accepts and responds to user input).
 
 ### <div align="center">Concept: 10%</div>
-    [x] Application should be a unique and novel idea.
-    [x] Your group should clearly and concisely articulate your project idea.
+- [x] Application should be a unique and novel idea.
+- [x] Your group should clearly and concisely articulate your project idea.
 
 ### <div align="center">Deployment: 20%</div>
-    [x] Application deployed at live URL and loads with no errors.
-    [x] Application GitHub URL submitted.
-    [x] Portfolio at live URL submitted, featuring project.
+- [x] Application deployed at live URL and loads with no errors.
+- [x] Application GitHub URL submitted.
+- [x] Portfolio at live URL submitted, featuring project.
 
 ### <div align="center">Respository Quality: 10%</div>
-    [x] Repository has a unique name.
-    [x] Repository follows best practices for file structure and naming conventions.
-    [x] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-    [x] Repository contains multiple descriptive commit messages.
-    [x] Repository contains a quality README file with description, screenshot, and link to deployed application.
+- [x] Repository has a unique name.
+- [x] Repository follows best practices for file structure and naming conventions.
+- [x] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+- [x] Repository contains multiple descriptive commit messages.
+- [x] Repository contains a quality README file with description, screenshot, and link to deployed application.
 
 ### <div align="center">Application Quality: 15%</div>
-    [x] Application user experience is intuitive and easy to navigate.
-    [x] Application user interface style is clean and polished.
-    [x] Application is responsive.
+- [x] Application user experience is intuitive and easy to navigate.
+- [x] Application user interface style is clean and polished.
+- [x] Application is responsive.
 
 ### <div align="center">Presentation: 10%</div>
-    [x] Your group should present using Powerpoint or a similar presentation software.
-    [x] Every group member should speak during the presentation.
-    [x] Your presentation should follow the Project Presentation Template.
+- [x] Your group should present using Powerpoint or a similar presentation software.
+- [x] Every group member should speak during the presentation.
+- [x] Your presentation should follow the Project Presentation Template.
 
 ### <div align="center">Collaboration: 10%</div>
-    [x] There are no major disparities in the number of GitHub contributions between group members.
+- [x] There are no major disparities in the number of GitHub contributions between group members.
 
 ---
 
