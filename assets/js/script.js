@@ -36,6 +36,19 @@ const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
  * 1.1 rollDice()
  */
 var rollDice = function (bet) {
+    // remove winner and loser classes
+    if ($("#player-box").hasClass("box-winner")) {
+        $("#player-box").removeClass("box-winner");
+        $("#player-result").removeClass("result-winner");
+        $("#npc-box").removeClass("box-loser");
+        $("#npc-result").removeClass("result-loser");
+    }
+    if ($("#player-box").hasClass("box-loser")) {
+        $("#player-box").removeClass("box-loser");
+        $("#player-result").removeClass("result-loser");
+        $("#npc-box").removeClass("box-winner");
+        $("#npc-result").removeClass("result-winner");
+    }
     // generate random number between 1 and 100 for both player and npc
     var playerValue = Math.floor(Math.random() * 100) + 1;
     var npcValue = Math.floor(Math.random() * 100) + 1;
@@ -50,14 +63,20 @@ var rollDice = function (bet) {
         rollDice();
         return;
     } else if (playerValue > npcValue) {
-        $("#win-or-lose").text("").append($("<p>").text(`Congrats! You Won!`));
+        $("#player-box").addClass("box-winner");
+        $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+        $("#npc-box").addClass("box-loser");
+        $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
         npcPoints = npcPoints - parseInt(bet);
         playerStatus.points = playerStatus.points + parseInt(bet);
         playerStatus.streak++;
         playerStatus.totalWins++;
         pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
     } else {
-        $("#win-or-lose").text("").append($("<p>").text(`Sorry, you lost. Try again.`));
+        $("#player-box").addClass("box-loser");
+        $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+        $("#npc-box").addClass("box-winner");
+        $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
         npcPoints = npcPoints + parseInt(bet);
         playerStatus.points = playerStatus.points - parseInt(bet);
         playerStatus.streak = 0;
@@ -65,7 +84,7 @@ var rollDice = function (bet) {
     }
 
     // DETERMINE GAME WINNER
-    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true) : endGame(false)) : () => {return};     
+    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};     
 };
 /**
  * 1.2 slackMessenger()
@@ -137,8 +156,8 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
  */
 var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
-
-    
+    $("#playerPoints").empty().append($("<h5>").text(playerStatus.points));
+    $("#npcPoints").empty().append($("<h5>").text(npcPoints));
     
 }
 /**
@@ -183,11 +202,13 @@ var giphyAPI = function (result, cb, cbError) {
 /**
  * 1.6 endGame()
  */
-var endGame = function (win_lose) {
+var endGame = function (win_lose, points, wins, streak) {
     if (win_lose) {
         result = "winner";
+        $('#final-score').removeClass().text(points).addClass('result-winner');
     } else {
         result = "loser";
+        $('#final-score').removeClass().text(points).addClass('result-loser');
     }
 
     let message = `You're a ${result}!!!`;
@@ -201,9 +222,11 @@ var endGame = function (win_lose) {
     var popup = new Foundation.Reveal($('#end-game-modal'));
     popup.open();
     $('#end-game-modal').removeClass('invisible')
-    $('#main-container').addClass('invisible');
-    $('#header').addClass('invisible');
+    $('#final-wins').text(wins);
+    $('#final-streak').text(streak);
     // SAVE DATA TO LOCAL STORAGE
+
+    $('#reset-btn').on('click', resetGame);
 
 };
 
@@ -211,7 +234,22 @@ var endGame = function (win_lose) {
  * 1.7 resetGame()
  */
 var resetGame = function () {
-
+    $('#end-game-modal').addClass('invisible')
+    $("#npc-box").removeClass();
+    $("#npc-box").addClass('cell auto box');
+    $('#npc-result').remove();
+    $('#npc-roll').remove();
+    $("#player-box").removeClass();
+    $("#player-box").addClass('cell auto box');
+    $('#player-result').remove();
+    $('#player-roll').remove();
+    playerStatus.points = 100;
+    playerStatus.streak = 0;
+    playerStatus.totalWins = 0;
+    npcPoints = 100;
+    $("#playerPoints").empty().append($("<h5>").text(playerStatus.points));
+    $("#npcPoints").empty().append($("<h5>").text(npcPoints));
+    console.log(playerStatus.points, playerStatus.streak, playerStatus.totalWins, npcPoints);
 };
 
 /* ===============[ 2. Document Ready ]=========================*/
