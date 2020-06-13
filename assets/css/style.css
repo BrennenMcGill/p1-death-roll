@@ -83,3 +83,7 @@ li {
 .end-game-modal {
     color: black;
 }
+
+.final-score {
+    border-bottom: black 5px solid;
+}
