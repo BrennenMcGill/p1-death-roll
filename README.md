@@ -38,7 +38,7 @@ functionality of the application are outlines below.
 | [LinkedIn](https://www.linkedin.com/in/brandonljackson23/) |  | [LinkedIn](https://www.linkedin.com/in/jeremy-collins-209545194/) | [LinkedIn](https://www.linkedin.com/in/morgan-hansen-47235872/) |
 
 ## **DEVELOPMENT**
-> This application was developed with the following application structures:
+This application was developed with the following application structures:
 1. [Hypertext Markup Language (HTML)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 2. [Cascading Style Sheets (CSS)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 3. [JavaScript (js)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -60,8 +60,8 @@ functionality of the application are outlines below.
 > THEN I can input my name and read the game instructions  
 > WHEN I initiate the game  
 > THEN I place my bet and roll the dice  
-> WHEN one rolled number is higher than the opponent's  
-> THEN the higher roll wins and collects the opponent's money in the amount bet  
+> WHEN a player's rolled number is higher than the opponent's  
+> THEN the higher roll wins and that player collects the opponent's money in the amount bet  
 > WHEN either player runs out of money  
 > THEN the game is over and the player with money left wins  
 > When the game is over  
@@ -88,7 +88,6 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 - [x] Demo: Show your stuff!
 - [x] Directions for future development.
 - [x] Links to the deployed application and the GitHub repository.
-
 
 ## **GRADING REQUIREMENTS**
 
@@ -131,7 +130,7 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 ---
 
 ## **USAGE**
-> Here is where we will note the Slack API Key and how/where to insert.
+> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user should request to join the Slack channel
 
 ## **FUNCTIONALITY**
 
