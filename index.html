@@ -23,7 +23,7 @@
 
 <body style="background-image: url('./assets/images/dark-bg.png');">
     <!-- Main Header -->
-    <header>
+    <header id="header">
         <a href="./index.html">
             <div>
                 <img src="assets/images/coins.png" class="coins-img"/>
@@ -143,6 +143,18 @@
         </button>
         <button class="button" data-open="user-modal">Back</button>
     </div>
+
+    <!-- End Game Modal-->
+    <div class="reveal invisible end-game-modal" id="end-game-modal" data-reveal data-close-on-click="false" data-close-on-esc="false" data-closeable>
+        <div>
+            <h1 class="font-bold text-center final-score">Final Score</h1>
+            <p>Score: </p> <h5 id="final-score"></h5> 
+            <p>Wins: </p> <h5 id="final-wins"></h5>
+            <p>streak <img src="assets/images/fire.svg`" alt=""> : </p> <h5 id="final-streak"></h5>
+            <button class="button expanded alert" id="reset-btn" aria-label="Dismiss alert" type="button" data-close>RESET</button>
+        </div>
+    </div>
+    
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed JavaScript -->
