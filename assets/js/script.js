@@ -53,7 +53,7 @@ var rollDice = function (bet) {
     var playerValue = Math.floor(Math.random() * 100) + 1;
     var npcValue = Math.floor(Math.random() * 100) + 1;
 
-    // create p tag to display player/npc result
+    // append player and npc roll results to page
     $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
     $("#player-roll-result").empty().append($("<span>").text(`${playerValue}`));
     $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
@@ -241,17 +241,19 @@ var resetGame = function () {
     $("#npc-box").removeClass();
     $("#npc-box").addClass('cell auto box');
     $('#npc-result').remove();
-    $('#npc-roll').remove();
+    $('#npc-rolled').remove();
     $("#player-box").removeClass();
     $("#player-box").addClass('cell auto box');
     $('#player-result').remove();
-    $('#player-roll').remove();
+    $('#player-rolled').remove();
+    $("#player-roll-result").remove();
+    $("#npc-roll-result").remove();
     playerStatus.points = 100;
     playerStatus.streak = 0;
     playerStatus.totalWins = 0;
     npcPoints = 100;
-    $("#playerPoints").empty().append($("<h5>").text(playerStatus.points));
-    $("#npcPoints").empty().append($("<h5>").text(npcPoints));
+    $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
+    $("#npcPoints").empty().append($("<span>").text(npcPoints));
     console.log(playerStatus.points, playerStatus.streak, playerStatus.totalWins, npcPoints);
 };
 
