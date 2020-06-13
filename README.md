@@ -129,9 +129,17 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 ---
 
 ## **USAGE**
-> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user should request to join the Slack channel
+> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user should request to join the [Death-Roll Slack group](death-roll.slack.com). The channel called #match-results, displays a random *winner* or *loser* Giphy image after each Death Roll game is played.  
+**NEED TO ADD INSTRUCTIONS ON API KEY FOR SLACK**
 
 ## **FUNCTIONALITY**
+1. When the application loads, the player is presented with a themed user interface and a 'Start Playing' button.
+2. When the player clicks the 'Start Playing' button, a modal appears for the user to input a username, read game instructions, and begin the game.
+3. If a user clicks the 'Instructions' button, a nested modal appears with game instructions. When a player is done reading the instructions, they can click the 'Back' button to return to the previous modal.
+4. After a username is typed, the player can click the 'Begin Game' button to start playing.
+5. When the game begins, the user is presented with a game card of their username and starting gold on the left, and the NPC's name and starting gold on the right. In the middle of the interface, the player is presented with a text field to input their bet and a button to roll the dice when they are ready to play.
+6. A random number generator is used to determine the roll of the player and the NPC. This rolled number will appear in the game cards. The opponent with the higher rolled number wins the round and will see the a green outline surrounding their game card and a confirmation that they won. The losing opponent will have a red outline for their game card and confirmation that they lost. The amount of gold each opponent has is then updated.
+7. The player then places another bet and rolls the dice again. This game play continues until one of the opponents runs out of gold. The player with remaining gold wins the game and an appopriate Giphy is sent to the Death-Roll Slack channel. 
 
 
 ![Tux, the Linux mascot](/assets/images/tux.png)
