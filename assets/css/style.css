@@ -62,8 +62,7 @@ li {
     margin:25px;
     padding: 10px;
     height: auto;
-    border: solid black;
-    border-color: grey;
+    border: solid grey;
     background-color: rgba(255, 255, 255, 20%);
     border-width: 3px 4px 3px 5px;
     border-radius:95% 4% 92% 5%/4% 95% 6% 95%;

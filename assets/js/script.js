@@ -20,7 +20,9 @@
  *   2.1 Add click listeners (add, edit, delete, reset)
  *    2.1.1 $('#start-btn').on('click', function ()
  *    2.1.2 $("#roll-dice").on("click",function)
- * 
+ *    2.1.3 Testing
+ *    2.1.4 $("#start-btn").prop('disabled', false)
+ *    2.1.5 $("#roll-dice").prop('disabled', false)
  *********************************************************/
 
 /* ===============[ 0. GLOBALS ]=========================*/
@@ -299,5 +301,30 @@ $(function () {
     $("#submit-message").on("click", function () {
         endGame(false);
     });
+
+
+    /**
+     * 2.1.4 $("#start-btn").prop('disabled', false)
+     */
+    // disable the Begin Game btn until the user enters a username
+    $('#start-btn').prop('disabled', true);
+    $('#modalInputName').keyup(function() {
+        if ($(this).val() !='') {
+            $('#start-btn').prop('disabled', false);
+        }
+    });
+
+    /**
+     * 2.1.5 $("#roll-dice").prop('disabled', false)
+     */
+    // disable the Roll btn until the user enters a bet > 0
+    $('#roll-dice').prop('disabled', true);
+    $('#bet-input').keyup(function() {
+        if ($(this).val() != '' && $(this).val() > 0) {
+            $('#roll-dice').prop('disabled', false);
+        }
+    });
+
+
 
 });
