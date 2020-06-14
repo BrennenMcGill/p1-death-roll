@@ -51,44 +51,63 @@ var rollDice = function (bet) {
         $("#npc-box").removeClass("box-winner");
         $("#npc-result").removeClass("result-winner");
     }
-    // generate random number between 1 and 100 for both player and npc
-    var playerValue = Math.floor(Math.random() * 100) + 1;
-    var npcValue = Math.floor(Math.random() * 100) + 1;
-
-    // append player and npc roll results to page
-    $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
-    $("#player-roll-result").empty().append($("<span>").text(`${playerValue}`));
-    $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
-    $("#npc-roll-result").empty().append($("<span>").text(`${npcValue}`));
-
-
-    // DETERMINE ROUND WINNER
-    if (playerValue === npcValue) {
-        rollDice();
-        return;
-    } else if (playerValue > npcValue) {
-        $("#player-box").addClass("box-winner");
-        $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
-        $("#npc-box").addClass("box-loser");
-        $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
-        npcPoints = npcPoints - parseInt(bet);
-        playerStatus.points = playerStatus.points + parseInt(bet);
-        playerStatus.streak++;
-        playerStatus.totalWins++;
-        pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
+    // restrict user from entering a bet higher than their current gold amount
+    if (bet > playerStatus.points) {
+        var exceededPlayerPoints = "You can't place a bet higher than your current gold amount"
+        $("#bet-input").empty();
+        $("#win-or-lose").addClass("bet-error").append(exceededPlayerPoints);
+        $('html, body').animate({
+            scrollTop: ($('#win-or-lose').offset().top)
+        },500);
+    } else if (bet > npcPoints) {
+        var exceededNpcPoints = "You can't place a bet higher than your opponent's gold amount"
+        $("#bet-input").empty();
+        $("#win-or-lose").addClass("bet-error").append(exceededNpcPoints);
+        $('html, body').animate({
+            scrollTop: ($('#win-or-lose').offset().top)
+        },500);
     } else {
-        $("#player-box").addClass("box-loser");
-        $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
-        $("#npc-box").addClass("box-winner");
-        $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
-        npcPoints = npcPoints + parseInt(bet);
-        playerStatus.points = playerStatus.points - parseInt(bet);
-        playerStatus.streak = 0;
-        pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
-    }
+        // remove error message, if any
+        $("#win-or-lose").empty();
+        // generate random number between 1 and 100 for both player and npc
+        var playerValue = Math.floor(Math.random() * 100) + 1;
+        var npcValue = Math.floor(Math.random() * 100) + 1;
 
-    // DETERMINE GAME WINNER
-    (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};     
+        // append player and npc roll results to page
+        $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
+        $("#player-roll-result").empty().append($("<span>").text(`${playerValue}`));
+        $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
+        $("#npc-roll-result").empty().append($("<span>").text(`${npcValue}`));
+
+
+        // DETERMINE ROUND WINNER
+        if (playerValue === npcValue) {
+            rollDice();
+            return;
+        } else if (playerValue > npcValue) {
+            $("#player-box").addClass("box-winner");
+            $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+            $("#npc-box").addClass("box-loser");
+            $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+            npcPoints = npcPoints - parseInt(bet);
+            playerStatus.points = playerStatus.points + parseInt(bet);
+            playerStatus.streak++;
+            playerStatus.totalWins++;
+            pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
+        } else {
+            $("#player-box").addClass("box-loser");
+            $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+            $("#npc-box").addClass("box-winner");
+            $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+            npcPoints = npcPoints + parseInt(bet);
+            playerStatus.points = playerStatus.points - parseInt(bet);
+            playerStatus.streak = 0;
+            pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
+        }
+
+        // DETERMINE GAME WINNER
+        (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};     
+    }
 };
 /**
  * 1.2 slackMessenger()

@@ -1,5 +1,7 @@
 body {
     color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .center {
@@ -11,7 +13,6 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
     padding-bottom: none;
     width: 300px;
     filter: grayscale(60%);
@@ -91,10 +92,14 @@ hr {
 }
 
 .bet {
-    padding-bottom: 30px;
     width: 320px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.bet-error {
+    font-size: 25px;
+    color: red;
 }
 
 .end-game-modal {
