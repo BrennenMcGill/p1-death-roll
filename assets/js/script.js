@@ -209,10 +209,10 @@ var giphyAPI = function (result, cb, cbError) {
 var endGame = function (win_lose, points, wins, streak) {
     if (win_lose) {
         result = "winner";
-        $('#final-score').removeClass().text(points).addClass('result-winner');
+        $('#final-score').addClass("h4").text(points);
     } else {
         result = "loser";
-        $('#final-score').removeClass().text(points).addClass('result-loser');
+        $('#final-score').addClass("h4").text(points);
     }
 
     let message = `You're a ${result}!!!`;
@@ -226,11 +226,14 @@ var endGame = function (win_lose, points, wins, streak) {
     var popup = new Foundation.Reveal($('#end-game-modal'));
     popup.open();
     $('#end-game-modal').removeClass('invisible')
-    $('#final-wins').text(wins);
-    $('#final-streak').text(streak);
+    $('#final-wins').addClass("h4").text(wins);
+    $('#final-streak').addClass("h4").text(streak);
     // SAVE DATA TO LOCAL STORAGE
 
     $('#reset-btn').on('click', resetGame);
+    $('#quit-btn').on('click', function() {
+        location.reload();
+    });
 
 };
 
