@@ -79,7 +79,7 @@
                 <span class="input-group-label">$$</span>
                 <input type="number" id="bet-input" class="input-group-field" style="text-align: right" />
                 <div class="input-group-button">
-                    <button type="submit" id="roll-dice" class="button alert" value="Roll Dice">Roll</button>
+                    <button type="submit" id="roll-dice" class="button primary" value="Roll Dice">Roll</button>
                 </div>
             </div>
             <div class="text-center" id="win-or-lose"></div>
@@ -91,7 +91,7 @@
     <footer id="main-footer"></footer>
     <!-- #main-footer -->
     <!-- User Input Modal -->
-    <div class="reveal" id="user-modal" data-reveal>
+    <div class="reveal modal-bg" id="user-modal" data-reveal>
         <form>
             <div>
                 <label for="modalInputName">
@@ -103,12 +103,12 @@
                 <input type="text" id="modalInputName" placeholder="Enter Username">
             </div>
         </form>
-        <div class="modal-footer">
+        <div class="modal-footer input-modal-footer">
             <button class="close-button" data-close aria-label="Close reveal" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <button class="button" data-open="instruct-modal">Instructions</button>
-            <button class="button success" id="start-btn">Begin Game</button>
+            <button class="button primary" id="start-btn">Begin Game</button>
+            <button class="button secondary" id="instructions-btn" data-open="instruct-modal">How to Play</button>
             <span id="modal-footer"></span>
         </div>
     </div>
@@ -145,13 +145,27 @@
     </div>
 
     <!-- End Game Modal-->
-    <div class="reveal invisible end-game-modal" id="end-game-modal" data-reveal data-close-on-click="false" data-close-on-esc="false" data-closeable>
-        <div>
-            <h1 class="font-bold text-center final-score">Final Score</h1>
-            <p>Score: </p> <h5 id="final-score"></h5> 
-            <p>Wins: </p> <h5 id="final-wins"></h5>
-            <p>streak <img src="./assets/images/fire.svg" alt=""> : </p> <h5 id="final-streak"></h5>
-            <button class="button expanded alert" id="reset-btn" aria-label="Dismiss alert" type="button" data-close>RESET</button>
+    <div class="reveal invisible end-game-modal modal-bg" id="end-game-modal" data-reveal data-close-on-click="false" data-close-on-esc="false" data-closeable>
+        <div class="row column">
+            <h1 class="text-center final-score october-crow-font font-black">Game Results</h1>
+        </div>
+        <div class="row final-results-row">
+            <div class="columns small-3 medium-3 large-3 final-results">
+                <h3>Score</h3>
+                <span id="final-score"></span>
+            </div>
+            <div class="columns small-3 medium-3 large-3 final-results">
+                <h3>Wins</h3>
+                <span id="final-wins"></span>
+            </div>
+            <div class="columns small-3 medium-3 large-3 final-results">
+                <h3> Streak  <img src="./assets/images/fire.svg" alt=""></h3>
+                <span id="final-streak"></span>
+            </div>
+        </div>
+        <div class="row column text-center">
+            <button class="button primary final-results" id="reset-btn" aria-label="Dismiss alert" type="button" data-close>Play Again</button>
+            <button class="button alert final-results" id="quit-btn" aria-label="Dismiss alert" type="button" data-close>Save & Quit</button>
         </div>
     </div>
     

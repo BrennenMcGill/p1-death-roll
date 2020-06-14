@@ -38,7 +38,7 @@ body {
 }
 
 .break {
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
 .roll {
@@ -104,7 +104,37 @@ hr {
 .final-score {
     border-bottom: black 5px solid;
     padding-bottom: 30px;
-    width: 320px;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+.font-black {
+    color: black;
+}
+
+.input-modal-footer {
+    text-align: center;
+}
+
+.modal-bg {
+    background-color: lightgray;
+}
+
+#start-btn {
+    float: left;
+}
+
+#instructions-btn {
+    float: right;
+}
+
+.final-results-row {
+    text-align: center;
+}
+
+.final-results {
+    display: inline-block;
+    margin: 30px;
+    text-align: center;
 }
