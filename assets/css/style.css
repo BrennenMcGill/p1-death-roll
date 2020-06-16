@@ -1,4 +1,6 @@
 body {
+    background: url(../images/dark-bg.png) no-repeat center center fixed; 
+    background-size: cover;
     color: white;
     margin-top: 30px;
     margin-bottom: 30px;
