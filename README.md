@@ -49,7 +49,7 @@ This application was developed with the following application structures:
 ---
 
 ## **USER STORY**
-> AS A gambling enthusiest  
+> AS A gambling and gaming enthusiast    
 > I WANT to play and win Death Roll  
 > SO THAT I can make the leaderboard  
 
