@@ -70,43 +70,54 @@ var rollDice = function (bet) {
         // remove error message, if any
         $("#win-or-lose").empty();
         // generate random number between 1 and 100 for both player and npc
+        $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
         var playerValue = Math.floor(Math.random() * 100) + 1;
+        $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
         var npcValue = Math.floor(Math.random() * 100) + 1;
 
-        // append player and npc roll results to page
-        $("#player-rolled").empty().append($("<h4>").text(`Rolled`));
-        $("#player-roll-result").empty().append($("<span>").text(`${playerValue}`));
-        $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
-        $("#npc-roll-result").empty().append($("<span>").text(`${npcValue}`));
+        shuffleNums(15, playerValue, $("#player-roll-result"));
+        shuffleNums(15, npcValue, $("#npc-roll-result"));
 
+        function shuffleNums(times, final, element) {
+            if (times > 1) {
+                element.empty().append($("<span>").text(Math.floor(Math.random() * 100) + 1));
+                setTimeout(function(){shuffleNums(times-1, final, element);},50);
+            } else {
+                element.empty().append($("<span>").text(final));
+                winner(playerValue, npcValue);
+            }
+        };
 
         // DETERMINE ROUND WINNER
-        if (playerValue === npcValue) {
-            rollDice();
-            return;
-        } else if (playerValue > npcValue) {
-            $("#player-box").addClass("box-winner");
-            $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
-            $("#npc-box").addClass("box-loser");
-            $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
-            npcPoints = npcPoints - parseInt(bet);
-            playerStatus.points = playerStatus.points + parseInt(bet);
-            playerStatus.streak++;
-            playerStatus.totalWins++;
-            pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
-        } else {
-            $("#player-box").addClass("box-loser");
-            $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
-            $("#npc-box").addClass("box-winner");
-            $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
-            npcPoints = npcPoints + parseInt(bet);
-            playerStatus.points = playerStatus.points - parseInt(bet);
-            playerStatus.streak = 0;
-            pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
-        }
-
-        // DETERMINE GAME WINNER
-        (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};     
+        function winner(playerValue, npcValue) {
+            if (playerValue === npcValue) {
+                rollDice();
+                return;
+            } else if (playerValue > npcValue) {
+                $("#player-box").addClass("box-winner");
+                $("#player-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+                $("#npc-box").addClass("box-loser");
+                $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+                npcPoints = npcPoints - (parseInt(bet)/2);
+                playerStatus.points = playerStatus.points + (parseInt(bet)/2);
+                playerStatus.streak++;
+                playerStatus.totalWins++;
+                pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
+                $('#roll-dice').prop('disabled', true);
+            } else {
+                $("#player-box").addClass("box-loser");
+                $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
+                $("#npc-box").addClass("box-winner");
+                $("#npc-result").empty().addClass("result-winner").append($("<h3>").text(`Winner!!!`));
+                npcPoints = npcPoints + (parseInt(bet)/2);
+                playerStatus.points = playerStatus.points - (parseInt(bet)/2);
+                playerStatus.streak = 0;
+                pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
+                $('#roll-dice').prop('disabled', true);
+            }
+            // DETERMINE GAME WINNER
+            (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};
+        };
     }
 };
 /**
