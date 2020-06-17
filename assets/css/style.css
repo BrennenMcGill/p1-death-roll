@@ -11,6 +11,10 @@ body {
     margin: 0 auto;
 }
 
+.leaderboard-btn {
+    margin-left: 20px;
+}
+
 .coins-img {
     display: block;
     margin-left: auto;
@@ -55,6 +59,7 @@ body {
 
 .instructions {
     color: black;
+    background-color: lightgray;
 }
 
 li {

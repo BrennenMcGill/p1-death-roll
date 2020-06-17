@@ -99,8 +99,8 @@ var rollDice = function (bet) {
                 $("#npc-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
                 npcPoints = npcPoints - (parseInt(bet)/2);
                 playerStatus.points = playerStatus.points + (parseInt(bet)/2);
-                playerStatus.streak++;
-                playerStatus.totalWins++;
+                playerStatus.streak = playerStatus.streak + .5;
+                playerStatus.totalWins = playerStatus.totalWins + .5;
                 pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
                 $('#roll-dice').prop('disabled', true);
                 playerStatus.winRatio = (playerStatus.totalWins/playerStatus.totalRolls).toFixed(2);
@@ -267,13 +267,13 @@ var resetGame = function () {
     $("#npc-box").removeClass();
     $("#npc-box").addClass('cell auto box');
     $('#npc-result').remove();
-    $('#npc-rolled').remove();
+    $('#npc-rolled').empty();
     $("#player-box").removeClass();
     $("#player-box").addClass('cell auto box');
     $('#player-result').remove();
-    $('#player-rolled').remove();
-    $("#player-roll-result").remove();
-    $("#npc-roll-result").remove();
+    $('#player-rolled').empty();
+    $("#player-roll-result").empty();
+    $("#npc-roll-result").empty();
     playerStatus.username = "";
     playerStatus.points = 100;
     playerStatus.streak = 0;
@@ -307,7 +307,7 @@ var leaderBoard = function() {
                         <ul> <li> <b>Winning Ratio:</b> ${playerArray.winRatio}</li>
                              <li> <b>Streak:</b> ${playerArray.streak}</li>
                              <li> <b>Final Score:</b> ${playerArray.finalScore}</li>
-                                            </ul>`;
+                        </ul></br>`;
         })
         .join("");
 }
