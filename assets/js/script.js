@@ -4,7 +4,6 @@
  * @author Jeremy C Collins, Morgan Hansen, Brennen Mcgill, Brandon Jackson
  * @version development
  * @license none (public domain)
- * 
  * ===============[ TABLE OF CONTENTS ]===================
  * 0. Globals
  * 1. Functions
@@ -15,7 +14,8 @@
  *   1.5 giphyAPI() 
  *   1.6 endGame()
  *   1.7 resetGame() 
- * 
+ *   1.8 saveHighScores()
+ *   1.9 leaderBoard()
  * 2. Document Ready
  *   2.1 Add click listeners (add, edit, delete, reset)
  *    2.1.1 $('#start-btn').on('click', function ()
@@ -24,16 +24,17 @@
  *    2.1.4 $("#start-btn").prop('disabled', false)
  *    2.1.5 $("#roll-dice").prop('disabled', false)
  *********************************************************/
-
 /* ===============[ 0. GLOBALS ]=========================*/
 var playerStatus = {
     username: "",
     points: 100,
     streak: 0,
-    totalWins: 0
+    totalWins: 0,
+    totalRolls: 0,
+    winRatio: 0,
+    finalScore: 0
 };
 var npcPoints = 100;
-const slackInput = JSON.parse(localStorage.getItem("slackName")) || [];
 /* ===============[ 1. Functions ]=========================*/
 /**
  * 1.1 rollDice()
@@ -75,10 +76,8 @@ var rollDice = function (bet) {
         var playerValue = Math.floor(Math.random() * 100) + 1;
         $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
         var npcValue = Math.floor(Math.random() * 100) + 1;
-
         shuffleNums(15, playerValue, $("#player-roll-result"));
         shuffleNums(15, npcValue, $("#npc-roll-result"));
-
         function shuffleNums(times, final, element) {
             if (times > 1) {
                 element.empty().append($("<span>").text(Math.floor(Math.random() * 100) + 1));
@@ -88,7 +87,6 @@ var rollDice = function (bet) {
                 winner(playerValue, npcValue);
             }
         };
-
         // DETERMINE ROUND WINNER
         function winner(playerValue, npcValue) {
             if (playerValue === npcValue) {
@@ -105,6 +103,8 @@ var rollDice = function (bet) {
                 playerStatus.totalWins++;
                 pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
                 $('#roll-dice').prop('disabled', true);
+                playerStatus.winRatio = (playerStatus.totalWins/playerStatus.totalRolls).toFixed(2);
+                playerStatus.finalScore = ((playerStatus.winRatio*playerStatus.streak)*100).toFixed(2);
             } else {
                 $("#player-box").addClass("box-loser");
                 $("#player-result").empty().addClass("result-loser").append($("<h3>").text(`Loser!!!`));
@@ -115,7 +115,11 @@ var rollDice = function (bet) {
                 playerStatus.streak = 0;
                 pointSystem(playerStatus.points, playerStatus.streak, playerStatus.totalWins);
                 $('#roll-dice').prop('disabled', true);
+                playerStatus.winRatio = (playerStatus.totalWins/playerStatus.totalRolls).toFixed(2);
+                playerStatus.finalScore = ((playerStatus.winRatio*playerStatus.streak)*100).toFixed(2);
             }
+            // PUSH ROLL TO LOCAL STORAGE ARRAY
+            playerStatus.totalRolls++;
             // DETERMINE GAME WINNER
             (playerStatus.points <= 0 || npcPoints <= 0) ? ((playerStatus.points > 0) ? endGame(true, playerStatus.points, playerStatus.totalWins, playerStatus.streak) : endGame(false, playerStatus.points, playerStatus.totalWins, playerStatus.streak)) : () => {return};
         };
@@ -182,12 +186,9 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
     $.ajax(settings).done(function (response) {
         console.log("response ============", response);
     });
-
 };
-
-
 /**
- * 1.3 srtGame()
+ * 1.3 startGame()
  */
 var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
@@ -200,10 +201,7 @@ var startGame = function (playerName) {
 var pointSystem = function (points, streak, wins) {
     $("#playerPoints").text(points);
     $("#npcPoints").text(npcPoints);
-    console.log("streak", streak);
-    console.log("wins", wins);
 }
-
 /**
  * 1.5 giphyAPI()
  */
@@ -219,7 +217,6 @@ var giphyAPI = function (result, cb, cbError) {
     var api_key = "sFsVukTCR6VSVrbN8OzUnJuANd3yiBET";
     var apiURL = `https://api.giphy.com/v1/gifs/search?q=${result}&api_key=${api_key}`;
     var randomIndex = Math.floor(Math.random() * Math.floor(24));
-
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
@@ -232,7 +229,6 @@ var giphyAPI = function (result, cb, cbError) {
             }
         })
 };
-
 /**
  * 1.6 endGame()
  */
@@ -244,21 +240,16 @@ var endGame = function (win_lose, points, wins, streak) {
         result = "loser";
         $('#final-score').addClass("h4").text(points);
     }
-
     let message = `You're a ${result}!!!`;
-
     slackMessenger(message);
     giphyAPI(result, slackMessenger, function () {
         console.log("Error!");
     });
-
-
     var popup = new Foundation.Reveal($('#end-game-modal'));
     popup.open();
     $('#end-game-modal').removeClass('invisible')
     $('#final-wins').addClass("h4").text(wins);
     $('#final-streak').addClass("h4").text(streak);
-
     $('#reset-btn').on('click', function(){
         saveHighScores();
         resetGame();
@@ -267,9 +258,7 @@ var endGame = function (win_lose, points, wins, streak) {
         saveHighScores();
         location.reload();
     });
-
 };
-
 /**
  * 1.7 resetGame()
  */
@@ -286,14 +275,16 @@ var resetGame = function () {
     $('#player-rolled').remove();
     $("#player-roll-result").remove();
     $("#npc-roll-result").remove();
+    playerStatus.username = "";
     playerStatus.points = 100;
     playerStatus.streak = 0;
     playerStatus.totalWins = 0;
+    playerStatus.winRatio = 0;
+    playerStatus.finalScore = 0;
     npcPoints = 100;
     $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
     $("#npcPoints").empty().append($("<span>").text(npcPoints));
 };
-
 /**
  * 1.8 saveHighScores();
  */
@@ -302,11 +293,10 @@ var saveHighScores = function() {
     const playerArray = playerStatus;
     const playerHistory = JSON.parse(localStorage.getItem("storedScores")) || [];
     playerHistory.push(playerArray);
-    playerHistory.sort((a, b)=> b.points - a.points);
+    playerHistory.sort((a, b)=> b.finalScore - a.finalScore);
     playerHistory.splice(5);
     localStorage.setItem("storedScores", JSON.stringify(playerHistory));
 }
-
 /**
  * 1.9 leaderBoard()
  */
@@ -314,15 +304,14 @@ var leaderBoard = function() {
     const playerHistory = JSON.parse(localStorage.getItem("storedScores")) || [];
     topFiveScores.innerHTML = playerHistory
         .map(playerArray => {
-            return `<li id = "topFiveScores"><b>Username:</b> ${playerArray.username} 
-                                             <b>Points:</b> ${playerArray.points}
-                                             <b>Streak:</b> ${playerArray.streak}
-                                             <b>Total Wins:</b> ${playerArray.totalWins}
-                                             </li>`;
+            return `<li id = "topFiveScores"><b>Username:</b> ${playerArray.username}</li> 
+                        <ul> <li> <b>Winning Ratio:</b> ${playerArray.winRatio}</li>
+                             <li> <b>Streak:</b> ${playerArray.streak}</li>
+                             <li> <b>Final Score:</b> ${playerArray.finalScore}</li>
+                                            </ul>`;
         })
         .join("");
 }
-
 /* ===============[ 2. Document Ready ]=========================*/
 $(function () {
 
@@ -334,7 +323,6 @@ $(function () {
      */
     $('#start-btn').on('click', function () {
         playerStatus.username = $("#modalInputName").val().trim();
-
              if (playerStatus.username) {
                 $('#user-modal').foundation('close')
                 $("#modalInputName").val("")
@@ -346,7 +334,6 @@ $(function () {
                 $("#modal-footer").empty().append($("<p>").text("Please Enter a Username!"))
              }
     });
-    
     /**
      * 2.1.2 $("#roll-dice").on("click",function)
      */
@@ -354,15 +341,12 @@ $(function () {
         rollDice(parseInt($("#bet-input").val()) > 0 ? $("#bet-input").val() : 0);
         $("#bet-input").val("");
     });
-
     /**
      * 2.1.3 Testing
      */
     $("#submit-message").on("click", function () {
         endGame(false);
     });
-
-
     /**
      * 2.1.4 $("#start-btn").prop('disabled', false)
      */
@@ -373,7 +357,6 @@ $(function () {
             $('#start-btn').prop('disabled', false);
         }
     });
-
     /**
      * 2.1.5 $("#roll-dice").prop('disabled', false)
      */
@@ -384,12 +367,10 @@ $(function () {
             $('#roll-dice').prop('disabled', false);
         }
     });
-
     /**
      * 2.1.6 $("#leader-btn").on("click",function)
      */
     $('#leader-btn').on('click', function(){
         leaderBoard();
     });  
-
 });
