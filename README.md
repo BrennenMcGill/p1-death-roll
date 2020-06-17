@@ -27,7 +27,7 @@ The group is expected to present the project and convince an audience that it se
 
 ## **APPLICATION LINKS**
 > [Live Application](https://garves44.github.io/p1-death-roll/)  
-> [github Repository](https://github.com/garves44/p1-death-roll)
+> [GitHub Repository](https://github.com/garves44/p1-death-roll)
 
 ## **CONTRIBUTORS** 
 | Brandon Jackson | Brennen McGill | Jeremy Collins | Morgan Hansen |
@@ -54,7 +54,7 @@ This application was developed with the following application structures:
 > SO THAT I can make the leaderboard  
 
 ## **ACCEPTANCE CRITERIA**
-> GIVEN I am playing a Death Roll game  
+> GIVEN I am playing Death Roll    
 > WHEN I click on the button to start playing  
 > THEN I can input my name and read the game instructions  
 > WHEN I initiate the game  
@@ -129,25 +129,26 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 ---
 
 ## **USAGE**
-> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user should request to join the [Death-Roll Slack group](death-roll.slack.com). The channel called #match-results, displays a random *winner* or *loser* Giphy image after each Death Roll game is played.  
-**NEED TO ADD INSTRUCTIONS ON API KEY FOR SLACK**
+> This application utilizes two APIs, Slack and Giphy. To experience the full utilization of these APIs, a user must do the following:  
+> 1. Join the [Death-Roll Slack group](death-roll.slack.com). The channel called #match-results, displays a random *winner* or *loser* Giphy image after each Death Roll game is played.  
+> 2. Additionally, users must supply a Slack API authentication key, which is used to identify a user. For full details on setting up Slack authentication, please see [Slack's API documentation](https://api.slack.com/web#:~:text=Authenticate%20your%20Web%20API%20requests,behalf%20of%20users%20and%20workspaces.). The user's Slack hook should look similar to this:  
+> {"SLACK_WEB_HOOK": "https://hooks.slack.com/services/[USER HOOK KEY HERE]"}
+
 
 ## **FUNCTIONALITY**
 1. When the application loads, the player is presented with a themed user interface, a 'Start Playing' button, and a 'Leaderboard' button.  
-![Home Screen](/assets/images/dice-icon.png)
+![Home Screen](/assets/images/homescreen.png)
 2. If the 'Leaderboard' button is clicked, a modal appears that shows the top 5 winning players. The user can close the modal to return to the home screen.  
 ![Leaderboard](/assets/images/dice-icon.png)
 3. When the player clicks the 'Start Playing' button, a modal appears for the user to input a username, read game instructions, and begin the game.  
-![Username Modal](/assets/images/dice-icon.png)
+![Username Modal](/assets/images/user-modal.png)
 4. If a user clicks the 'Instructions' button, a nested modal appears with game instructions. When a player is done reading the instructions, they can click the 'Back' button to return to the previous modal.  
-![Instructions Modal](/assets/images/dice-icon.png)
-5. After a username is typed, the player can click the 'Begin Game' button to start playing.  
-![Begin Game](/assets/images/dice-icon.png)
-6. When the game begins, the user is presented with a game card of their username and starting gold on the left, and the NPC's name and starting gold on the right. In the middle of the interface, the player is presented with a text field to input their bet and a button to roll the dice when they are ready to play.  
-![Game Interface](/assets/images/dice-icon.png)
-7. A random number generator is used to determine the roll of the player and the NPC. This rolled number will appear in the game cards. The opponent with the higher rolled number wins the round and will see the a green outline surrounding their game card and a confirmation that they won. The losing opponent will have a red outline for their game card and confirmation that they lost. The amount of gold each opponent has is then updated.  
-![Game Results](/assets/images/dice-icon.png)
-8. The player then places another bet and rolls the dice again. This game play continues until one of the opponents runs out of gold. The player with remaining gold wins the game and an appopriate Giphy is sent to the Death-Roll Slack channel.   
-![Slack Channel](/assets/images/dice-icon.png)
-9. When a game ends, a modal appears detailing the player's final score, number of wins, and winning streak. This information is persistent from the local storage. At the bottom of the modal, the player has the option of playing again.  
+![Instructions Modal](/assets/images/instructions.png)
+5. After a username is typed, the player can click the 'Begin Game' button to start playing. When the game begins, the user is presented with a game card of their username and starting gold on the left, and the NPC's name and starting gold on the right. In the middle of the interface, the player is presented with a text field to input their bet and a button to roll the dice when they are ready to play.  
+![Game Interface](/assets/images/game-cards.png)
+6. A random number generator is used to determine the roll of the player and the NPC. This rolled number will appear in the game cards. The opponent with the higher rolled number wins the round and will see the a green outline surrounding their game card and a confirmation that they won. The losing opponent will have a red outline for their game card and confirmation that they lost. The amount of gold each opponent has is then updated.  
+![Game Results](/assets/images/results-cards.png)
+7. The player then places another bet and rolls the dice again. This game play continues until one of the opponents runs out of gold. The player with remaining gold wins the game and an appropriate Giphy is sent to the Death-Roll Slack channel.   
+![Slack Channel](/assets/images/slack-results.png)
+8. When a game ends, a modal appears detailing the player's final points, number of wins, and winning streak for the game. The user's scores are saved to the local storage if they make the top 5. At the bottom of the modal, the player has the option of playing again.  
 ![Score Board](/assets/images/dice-icon.png)
