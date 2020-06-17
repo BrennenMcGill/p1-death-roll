@@ -27,7 +27,8 @@ The group is expected to present the project and convince an audience that it se
 
 ## **APPLICATION LINKS**
 > [Live Application](https://garves44.github.io/p1-death-roll/)  
-> [GitHub Repository](https://github.com/garves44/p1-death-roll)
+> [GitHub Repository](https://github.com/garves44/p1-death-roll)  
+> [Presentation Slides](https://docs.google.com/presentation/d/1c4O4PD0kIez8luhwurtpjF2dVBDfQud0Z6yyhY7Ug04/edit?usp=sharing)
 
 ## **CONTRIBUTORS** 
 | Brandon Jackson | Brennen McGill | Jeremy Collins | Morgan Hansen |
@@ -139,7 +140,7 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 1. When the application loads, the player is presented with a themed user interface, a 'Start Playing' button, and a 'Leaderboard' button.  
 ![Home Screen](/assets/images/homescreen.png)
 2. If the 'Leaderboard' button is clicked, a modal appears that shows the top 5 winning players. The user can close the modal to return to the home screen.  
-![Leaderboard](/assets/images/dice-icon.png)
+![Leaderboard](/assets/images/leaderboard.png)
 3. When the player clicks the 'Start Playing' button, a modal appears for the user to input a username, read game instructions, and begin the game.  
 ![Username Modal](/assets/images/user-modal.png)
 4. If a user clicks the 'Instructions' button, a nested modal appears with game instructions. When a player is done reading the instructions, they can click the 'Back' button to return to the previous modal.  
@@ -151,4 +152,4 @@ Group should give a 10-minute presentation on the project, with about 7 minutes 
 7. The player then places another bet and rolls the dice again. This game play continues until one of the opponents runs out of gold. The player with remaining gold wins the game and an appropriate Giphy is sent to the Death-Roll Slack channel.   
 ![Slack Channel](/assets/images/slack-results.png)
 8. When a game ends, a modal appears detailing the player's final points, number of wins, and winning streak for the game. The user's scores are saved to the local storage if they make the top 5. At the bottom of the modal, the player has the option of playing again.  
-![Score Board](/assets/images/dice-icon.png)
+![Score Board](/assets/images/game-results.png)
