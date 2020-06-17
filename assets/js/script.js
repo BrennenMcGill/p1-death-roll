@@ -162,7 +162,6 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
             })
     }
     var settings = {
-
         url: WebHook,
         type: "POST",
         dataType: "application/json",
