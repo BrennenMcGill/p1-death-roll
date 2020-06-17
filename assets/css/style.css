@@ -1,5 +1,9 @@
 body {
+    background: url(../images/dark-bg.png) no-repeat center center fixed; 
+    background-size: cover;
     color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .center {
@@ -11,7 +15,6 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
     padding-bottom: none;
     width: 300px;
     filter: grayscale(60%);
@@ -38,7 +41,7 @@ body {
 }
 
 .break {
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
 .roll {
@@ -62,8 +65,7 @@ li {
     margin:25px;
     padding: 10px;
     height: auto;
-    border: solid black;
-    border-color: grey;
+    border: solid grey;
     background-color: rgba(255, 255, 255, 20%);
     border-width: 3px 4px 3px 5px;
     border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
@@ -92,10 +94,14 @@ hr {
 }
 
 .bet {
-    padding-bottom: 30px;
     width: 320px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.bet-error {
+    font-size: 25px;
+    color: red;
 }
 
 .end-game-modal {
@@ -105,7 +111,37 @@ hr {
 .final-score {
     border-bottom: black 5px solid;
     padding-bottom: 30px;
-    width: 320px;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+.font-black {
+    color: black;
+}
+
+.input-modal-footer {
+    text-align: center;
+}
+
+.modal-bg {
+    background-color: lightgray;
+}
+
+#start-btn {
+    float: left;
+}
+
+#instructions-btn {
+    float: right;
+}
+
+.final-results-row {
+    text-align: center;
+}
+
+.final-results {
+    display: inline-block;
+    margin: 30px;
+    text-align: center;
 }
