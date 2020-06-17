@@ -32,7 +32,8 @@
                 <h1 class="text-center october-crow-font title">Death Roll</h1>
             </div>
         </a>
-        <button type="button" id="modal-btn" class="button large center" data-open="user-modal">Start Playing</button>
+        <button type="button" id="modal-btn" class="button large center secondary" data-open="user-modal">Start Playing</button>
+        <button type="button" id="leader-btn" class="button large center secondary" data-open="leader-modal">Leaderboard</button>
     </header>
     <!-- #main-header -->
     <!-- Main Section Start -->
@@ -143,7 +144,6 @@
         </button>
         <button class="button" data-open="user-modal">Back</button>
     </div>
-
     <!-- End Game Modal-->
     <div class="reveal invisible end-game-modal modal-bg" id="end-game-modal" data-reveal data-close-on-click="false" data-close-on-esc="false" data-closeable>
         <div class="row column">
@@ -165,10 +165,19 @@
         </div>
         <div class="row column text-center">
             <button class="button primary final-results" id="reset-btn" aria-label="Dismiss alert" type="button" data-close>Play Again</button>
-            <button class="button alert final-results" id="quit-btn" aria-label="Dismiss alert" type="button" data-close>Save & Quit</button>
+            <button class="button alert final-results" id="quit-btn" aria-label="Dismiss alert" type="button" data-close>Quit</button>
         </div>
     </div>
-    
+    <!-- Modal for LeaderBoard -->
+    <div class="reveal instructions" id="leader-modal" data-reveal>
+        <h1 class = "font-bold">
+            Top 5 High Scores
+        </h1>
+        <ul id = topFiveScores></ul>
+        <button class="close-button" data-close aria-label="Close reveal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed JavaScript -->
