@@ -27,6 +27,7 @@
 
 /* ===============[ 0. GLOBALS ]=========================*/
 var playerStatus = {
+    username: "",
     points: 100,
     streak: 0,
     totalWins: 0
@@ -192,7 +193,6 @@ var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
     $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
     $("#npcPoints").empty().append($("<span>").text(npcPoints));
-    
 }
 /**
  * 1.4 pointSystem()
@@ -258,10 +258,13 @@ var endGame = function (win_lose, points, wins, streak) {
     $('#end-game-modal').removeClass('invisible')
     $('#final-wins').addClass("h4").text(wins);
     $('#final-streak').addClass("h4").text(streak);
-    // SAVE DATA TO LOCAL STORAGE
 
-    $('#reset-btn').on('click', resetGame);
+    $('#reset-btn').on('click', function(){
+        saveHighScores();
+        resetGame();
+    });  
     $('#quit-btn').on('click', function() {
+        saveHighScores();
         location.reload();
     });
 
@@ -289,8 +292,36 @@ var resetGame = function () {
     npcPoints = 100;
     $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
     $("#npcPoints").empty().append($("<span>").text(npcPoints));
-    console.log(playerStatus.points, playerStatus.streak, playerStatus.totalWins, npcPoints);
 };
+
+/**
+ * 1.8 saveHighScores();
+ */
+ // function to save top five highest scores to the localStorage
+var saveHighScores = function() {
+    const playerArray = playerStatus;
+    const playerHistory = JSON.parse(localStorage.getItem("storedScores")) || [];
+    playerHistory.push(playerArray);
+    playerHistory.sort((a, b)=> b.points - a.points);
+    playerHistory.splice(5);
+    localStorage.setItem("storedScores", JSON.stringify(playerHistory));
+}
+
+/**
+ * 1.9 leaderBoard()
+ */
+var leaderBoard = function() {
+    const playerHistory = JSON.parse(localStorage.getItem("storedScores")) || [];
+    topFiveScores.innerHTML = playerHistory
+        .map(playerArray => {
+            return `<li id = "topFiveScores"><b>Username:</b> ${playerArray.username} 
+                                             <b>Points:</b> ${playerArray.points}
+                                             <b>Streak:</b> ${playerArray.streak}
+                                             <b>Total Wins:</b> ${playerArray.totalWins}
+                                             </li>`;
+        })
+        .join("");
+}
 
 /* ===============[ 2. Document Ready ]=========================*/
 $(function () {
@@ -301,25 +332,21 @@ $(function () {
     /**
      * 2.1.1 $('#start-btn').on('click', function ()
      */
-    // Button to Save Slack Username to Local Storage & Start Game
     $('#start-btn').on('click', function () {
-        var playerName = $("#modalInputName").val().trim();
-        const userArray = {
-                 username: playerName
-             }; 
+        playerStatus.username = $("#modalInputName").val().trim();
 
-             if (playerName) {
+             if (playerStatus.username) {
                 $('#user-modal').foundation('close')
                 $("#modalInputName").val("")
                 $("#main-container").removeClass("invisible")
                 $("#modal-btn").addClass("invisible")
-                startGame(playerName)
+                $("#leader-btn").addClass("invisible")
+                startGame(playerStatus.username)
              } else {
                 $("#modal-footer").empty().append($("<p>").text("Please Enter a Username!"))
              }
     });
-
-
+    
     /**
      * 2.1.2 $("#roll-dice").on("click",function)
      */
@@ -358,6 +385,11 @@ $(function () {
         }
     });
 
-
+    /**
+     * 2.1.6 $("#leader-btn").on("click",function)
+     */
+    $('#leader-btn').on('click', function(){
+        leaderBoard();
+    });  
 
 });
