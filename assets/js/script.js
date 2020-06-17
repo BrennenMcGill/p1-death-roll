@@ -61,6 +61,7 @@ var rollDice = function (bet) {
         $('html, body').animate({
             scrollTop: ($('#win-or-lose').offset().top)
         },500);
+    // restrict user from entering a bet higher than opponent's current gold amount
     } else if (bet > npcPoints) {
         var exceededNpcPoints = "You can't place a bet higher than your opponent's gold amount"
         $("#bet-input").empty();
@@ -76,6 +77,7 @@ var rollDice = function (bet) {
         var playerValue = Math.floor(Math.random() * 100) + 1;
         $("#npc-rolled").empty().append($("<h4>").text(`Rolled`));
         var npcValue = Math.floor(Math.random() * 100) + 1;
+        // shuffle through random numbers to emulate rolling before displaying final result
         shuffleNums(15, playerValue, $("#player-roll-result"));
         shuffleNums(15, npcValue, $("#npc-roll-result"));
         function shuffleNums(times, final, element) {
