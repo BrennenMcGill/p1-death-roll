@@ -60,6 +60,7 @@ body {
 .instructions {
     color: black;
     background-color: lightgray;
+    margin-bottom: 75px;
 }
 
 li {
@@ -134,11 +135,11 @@ hr {
 }
 
 #start-btn {
-    float: right;
+    float: left;
 }
 
 #instructions-btn {
-    float: left;
+    float: right;
 }
 
 .final-results-row {

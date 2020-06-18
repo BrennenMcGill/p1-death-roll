@@ -195,6 +195,9 @@ var startGame = function (playerName) {
     $("#user-name").empty().append($("<h3>").text(playerName));
     $("#playerPoints").empty().append($("<span>").text(playerStatus.points));
     $("#npcPoints").empty().append($("<span>").text(npcPoints));
+    $('html, body').animate({
+        scrollTop: ($('#user-name').offset().top)
+    },500);
 }
 /**
  * 1.4 pointSystem()
@@ -259,7 +262,7 @@ var endGame = function (win_lose, points, wins, streak) {
     });  
     $('#quit-btn').on('click', function() {
         saveHighScores();
-        location.reload();
+        location.href = location.href;
     });
 };
 /**
