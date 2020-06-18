@@ -1,7 +1,7 @@
 /*********************************************************
  * Death Roll
  * @package p1-death-roll
- * @author Jeremy C Collins, Morgan Hansen, Brennen Mcgill, Brandon Jackson
+ * @author Jeremy C Collins, Morgan Hansen, Brennen McGill, Brandon Jackson
  * @version development
  * @license none (public domain)
  * ===============[ TABLE OF CONTENTS ]===================
@@ -151,8 +151,8 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
                 const regex = /^(?:You\'re\ a)/g;
 
                 if (message.search(regex) === -1) {
-                    var gif = $("<img>").addClass("").attr("src", message);
-                    $("#win-or-lose").append(gif);
+                    var gif = $("<img>").addClass("center results-gif").attr("src", message);
+                    $("#end-game-gif").append(gif);
 
                 } else {
                     var messageHeader = $("<h3>").text(message);
@@ -246,12 +246,14 @@ var endGame = function (win_lose, points, wins, streak) {
     giphyAPI(result, slackMessenger, function () {
         console.log("Error!");
     });
+    // Creates a modal to display final score
     var popup = new Foundation.Reveal($('#end-game-modal'));
     popup.open();
     $('#end-game-modal').removeClass('invisible')
     $('#final-wins').addClass("h4").text(wins);
     $('#final-streak').addClass("h4").text(streak);
     $('#reset-btn').on('click', function(){
+        $('#end-game-gif').html('');
         saveHighScores();
         resetGame();
     });  
