@@ -151,7 +151,7 @@ var slackMessenger = function (message, WebHook, cb, cbError) {
                 const regex = /^(?:You\'re\ a)/g;
 
                 if (message.search(regex) === -1) {
-                    var gif = $("<img>").addClass("center border border-black").attr("src", message);
+                    var gif = $("<img>").addClass("center results-gif").attr("src", message);
                     $("#end-game-gif").append(gif);
 
                 } else {

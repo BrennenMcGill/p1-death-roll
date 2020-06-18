@@ -134,11 +134,11 @@ hr {
 }
 
 #start-btn {
-    float: left;
+    float: right;
 }
 
 #instructions-btn {
-    float: right;
+    float: left;
 }
 
 .final-results-row {
@@ -149,4 +149,9 @@ hr {
     display: inline-block;
     margin: 30px;
     text-align: center;
+}
+
+.results-gif {
+    border: darkgrey solid 2px;
+    border-radius: 5px;
 }
